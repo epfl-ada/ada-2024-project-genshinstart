@@ -1,8 +1,8 @@
-## Readme
+# Readme
 
-### Project Proposal - Rational or emotional: Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game
+## Project Proposal - Rational or emotional: Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game
 
-#### Introduction
+### Introduction
 
 **Abstract:**
 
@@ -26,7 +26,7 @@ Are there any biases or noises in the paths taken by humans?
 
 By answering the question above, we can measure the paths from four different perspectives: performance strengths and weaknesses, strategy differences, depth of understanding and bias existence.
 
-#### Implement: 
+### Implement: 
 
 **Pipeline**:
 
@@ -55,7 +55,7 @@ We will only use the database - wikispeedia that has been provided and based on 
 | Nov.30th -  Dec.13rd | Processing and analysis             |
 | Dec.13th - Dec.20th  | Evaluation, comparison and report   |
 
-**Conclusion**
+### Conclusion
 
 This project compares the abilities of humans and LLMs to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. This study will determine whether LLMs exhibit similarities to human reasoning or possess their own unique logical patterns. Ultimately, our goal is to better assess the current capabilities of LLM models in understanding complex information.
 
