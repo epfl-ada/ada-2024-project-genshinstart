@@ -32,7 +32,7 @@ By answering the question above, we can measure the paths from four different pe
 
 The research process follows this workflow:
 
-![image-20241111140617608](C:\Users\62533\AppData\Roaming\Typora\typora-user-images\image-20241111140617608.png)
+![image-pipline](img/pipline.png)
 
 **Database:**
 
