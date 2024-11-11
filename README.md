@@ -36,7 +36,7 @@ The research process follows this workflow:
 
 **Database:**
 
-We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will use the API to collect batch browsing data of the LLMs.
+We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will also use the API to collect batch browsing data of the LLMs. With the combination, we will use the new dataset to analyse and evaluate. 
 
 **Method/Matrix**
 
