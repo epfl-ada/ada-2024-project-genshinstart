@@ -41,7 +41,6 @@ We will only use the database - wikispeedia that has been provided and based on 
 **Method/Matrix**
 
 0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
-
 1. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
 2. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
 
