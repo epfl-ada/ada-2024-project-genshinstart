@@ -1,78 +1,61 @@
-### Readme.md 
-[database]: https://snap.stanford.edu/data/wikispeedia.html	"wikispeedia"
-file containing the detailed project proposal (up to 1000 words). Your README.md should contain:
-- Title
-- Abstract: A 150 word description of the project idea and goals. What’s the motivation behind your project? What story would you like to tell, and why?
-- Research Questions: A list of research questions you would like to address during the project.
-- Proposed additional datasets (if any): List the additional dataset(s) you want to use (if any), and some ideas on how you expect to get, manage, process, and enrich it/them. Show us that you’ve read the docs and some examples, and that you have a clear idea on what to expect. Discuss data size and format if relevant. It is your responsibility to check that what you propose is feasible.
-- Methods
-- Proposed timeline
-- Organization within the team: A list of internal milestones up until project Milestone P3.
-- Questions for TAs (optional): Add here any questions you have for us related to the proposed project.
+## Readme
 
-Rational or emotional: Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game
-Abstract: A 150 word description of the project idea and goals. 
-What’s the motivation behind your project? 
-The purpose of our project is to prepare the strategies of humans and LLM in navigating the "Wikipedia Game", in which players need to link one article to another one by using the shortest paths. 
-What story would you like to tell, and why? 
-Research Questions: 
-Do LLMs outperform humans in finding shortest paths between semantically closely related and unrelated words in the Wikispeedia game?
-How do LLMs’ strategies differ from human strategies when navigating between concepts?
-Do the paths taken by LLMs reflect a deeper or more superficial understanding of the semantic connections between words compared to human paths?
+### Project Proposal - Rational or emotional: Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game
+
+#### Introduction
+
+**Abstract:**
+
+The project aims to explore and compare the strategies of humans and large language models(LLMs) in the Wikipedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We will investigate whether LLMs are better at finding the shortest paths than humans in terms of efficiency and whether their strategies for finding paths differ significantly from those of humans. Through these analyses, we aim to explore whether LLMs have a deeper or more superficial understanding of semantics compared to humans and whether the LLMs are more perceptual or rational compared to humans.
+
+**Motivation:**
+
+By exploring the differences in semantic understanding and exploration patterns between humans and LLMs, the project helps to understand the cognitive strengths as well as limitations of AI and humans. This will help determine whether AIs have near-human thinking patterns and comprehension abilities. As a result, the project can advance our knowledge and judgment of AI's semantic comprehension capabilities.
+
+**Research Question and Story:**
+
+In this project, we ought to study the following questions:
+
+Do LLMs outperform humans in finding the shortest paths between semantically closely related and unrelated words in the Wikispeedia game? 
+
+How do LLMs’ strategies differ from human strategies when navigating between concepts? 
+
+Do the paths taken by LLMs reflect a deeper or more superficial understanding of the semantic connections between words compared to human paths? 
+
 Are there any biases or noises in the paths taken by humans?
 
-Proposed additional datasets (if any): List the additional dataset(s) you want to use (if any), and some ideas on how you expect to get, manage, process, and enrich it/them. 
+By answering the question above, we can measure the paths from four different perspectives: performance strengths and weaknesses, strategy differences, depth of understanding and bias existence.
 
-We will not use additional dataset. But we will use LLM to generate a new dataset of navigation paths.
+#### Implement: 
 
-Method: 
-1. Prompt the LLM: Describe the game, and give it the inputs: first input the origin and target, and the nodes adjacent to the origin, then after LLM's selection, input the corresponding neighbor, until reach the target. 
-2. A measure of reason and sensibility: we can calculate the mean similarity of embeddings in adjacent nodes in a path, to stand for the sensibility. 
+**Pipeline**:
 
-Methods Proposed timeline 
-Setting Up LLMs to Play the Game: Use popular LLMs to play the Wikispeedia game by feeding the current article and possible links into the model, asking it to predict the best next step to reach the goal.
-Human vs. LLM Path Comparison: Compare the length, efficiency, and relevance of paths taken by LLMs versus those taken by humans. Analyze where LLMs diverge from human choices and whether those divergences make sense semantically.
-Analysis of Understanding: Investigate whether LLMs display an understanding of concept relationships similar to humans. Determine if the human paths are statistically longer than LLMs, will this reveal any noise in the human behaviors.
+The research process follows this workflow:
 
+![image-20241111140617608](C:\Users\62533\AppData\Roaming\Typora\typora-user-images\image-20241111140617608.png)
 
-Organization within the team: A list of internal milestones up until project Milestone P3. 
+**Database:**
 
-Questions for TAs: Add here any questions you have for us related to the proposed project.
+We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will use the API to collect batch browsing data of the LLMs.
 
-Is the research plan feasible or do you think it’s crisp enough?
-Do you have any recommendations for quantifying biases or measuring rationality in generated paths?
+**Method/Matrix**
 
+0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
 
-Example: 
-origin: 11_century, target: fire
-The path GPT went through: 
-1. Starting from the 11th century page, let’s prioritize links that might relate to topics where fire or its history could be discussed, like technology, culture, or warfare.
-Looking at this list, I’ll choose:
-First choice: "Crusades"
-The Crusades involved significant historical events and warfare, which often includes references to fire as a weapon, symbol, or technological element.
-Let me know if that link gets me closer!
-2. I'll go with "War" next, since fire often appears in the context of warfare, weapons, and strategies.
-This choice seems like a strong bet for bringing us closer to the target topic!
-3. Next, I’ll select "Weapon" since this topic is closely related to fire in terms of both traditional and modern weaponry. It should lead us closer to discussions about fire!
-4. I'll choose "Firearm" next. Firearms directly relate to fire, both in their operation and historical context, making it a logical jump toward the target!
-5. Next, I’ll go with "Gunpowder." Gunpowder is a key element in the history of firearms and is closely related to the concept of fire. This should bring us even closer to the target!
-6. I'll select "Fire" next, as it is the target article we're aiming for! Let's see if this jump gets us there.
+1. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
+2. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
 
+**Timeline**
 
+| Date                 | Content                             |
+| :------------------- | ----------------------------------- |
+| Now - Nov.15th       | Data preprocessing and pre-analysis |
+| Now - Nov.23rd       | API exploration                     |
+| Nov.16th - Nov.30th  | Dataset generation                  |
+| Nov.30th -  Dec.13rd | Processing and analysis             |
+| Dec.13th - Dec.20th  | Evaluation, comparison and report   |
 
+**Conclusion**
 
+This project compares the abilities of humans and LLMs to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. This study will determine whether LLMs exhibit similarities to human reasoning or possess their own unique logical patterns. Ultimately, our goal is to better assess the current capabilities of LLM models in understanding complex information.
 
-Comments from TA:
-Estimation of cost
-Greedy
-Start from small models
-https://huggingface.co/meta-llama/Llama-3.2-1B
-https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct
-Prompt design can matter
-
-Compare strategies:
-More hyperlinks in initial steps
-Laziness of human choices (tend to make early choices)
-Prompts with or without passages to see whether LLMs also have same laziness
-
-https://docs.google.com/document/d/182tSWUMvZoNp5k80JT99ScAzWbSo26JNORv9d36gqtk/edit?usp=sharing
