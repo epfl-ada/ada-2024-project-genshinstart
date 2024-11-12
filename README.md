@@ -51,7 +51,7 @@ We will only use the database - wikispeedia that has been provided and based on 
 
 Python
 
-openAI:chatgpt4o-mini
+OpenAI:Chatgpt 4o-mini
 
 **Timeline**
 
