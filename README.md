@@ -24,6 +24,8 @@ Do the paths taken by LLMs reflect a deeper or more superficial understanding of
 
 Are there any biases or noises in the paths taken by humans?
 
+Is there a possibility of AI a priori?
+
 By answering the question above, we can measure the paths from four different perspectives: performance strengths and weaknesses, strategy differences, depth of understanding and bias existence.
 
 ### Implement: 
@@ -40,17 +42,16 @@ We will only use the database - wikispeedia that has been provided and based on 
 
 **Method/Matrics**
 
-
 0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
 1. We will use simple analysis of path distance and semantic distance to measure the effiency: whether each step is closer to the target page.
 2. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
-3. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
-
+3. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path.
 
 **Tool**
-Python
-openAI:chatgpt4o-mini
 
+Python
+
+openAI:chatgpt4o-mini
 
 **Timeline**
 
