@@ -38,12 +38,14 @@ The research process follows this workflow:
 
 We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will also use the API to collect batch browsing data of the LLMs. With the combination, we will use the new dataset to analyse and evaluate. 
 
-**Method/Matrix**
-
+**Method/Matrics**
 0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
-1. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
-2. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
-
+1. We will use simple analysis of path distance and semantic distance to measure the effiency: whether each step is closer to the target page.
+2. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
+3. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
+**Tool**
+Python
+openAI:chatgpt4o-mini
 **Timeline**
 
 | Date                 | Content                             |
