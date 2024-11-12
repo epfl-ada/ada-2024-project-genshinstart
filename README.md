@@ -43,9 +43,13 @@ We will only use the database - wikispeedia that has been provided and based on 
 1. We will use simple analysis of path distance and semantic distance to measure the effiency: whether each step is closer to the target page.
 2. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
 3. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path
+
+
 **Tool**
 Python
 openAI:chatgpt4o-mini
+
+
 **Timeline**
 
 | Date                 | Content                             |
