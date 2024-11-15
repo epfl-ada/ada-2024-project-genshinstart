@@ -60,10 +60,10 @@ OpenAI:Chatgpt 4o-mini
 | Date                 | Content                             |
 | :------------------- | ----------------------------------- |
 | Now - Nov.15th       | Data preprocessing and pre-analysis |
-| Now - Nov.23rd       | API exploration                     |
-| Nov.16th - Nov.30th  | Dataset generation                  |
-| Nov.30th -  Dec.13th | Processing and analysis             |
-| Dec.13th - Dec.20th  | Evaluation, comparison and report   |
+| Nov.16 - Nov.24th    | LLM dataset generation              |
+| Nov.25th -  Dec.8th  | Processing and analysis             |
+| Dec.9th - Dec.15th   | Evaluation, comparison and report   |
+| Dec.16th - Dec.20th  | Final Check and Supplement          |
 
 ### Conclusion
 
