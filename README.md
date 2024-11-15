@@ -40,12 +40,14 @@ The research process follows this workflow:
 
 We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will also use the API to collect batch browsing data of the LLMs. With the combination, we will use the new dataset to analyse and evaluate. 
 
-**Method/Matrics**
+**Method/Metrics**
 
 0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
-1. We will use simple analysis of path distance and semantic distance to measure the effiency: whether each step is closer to the target page.
-2. we will generate and visualize graph node embeddings using Node2Vec, enabling analysis of node relationships in a reduced-dimensional space.
-3. We will design a method based on graph embedding closeness score to judge the merit of the method, which shows a clear advantage in the optimal path.
+1. We will apply gpt 4o-mini to generate the navigation path made by LLM.
+2. Graph construction: the articles and the links between them can be naturally structured as digraphs.
+3. To measure the difference between the navigation paths made by human and LLM, we could focus on: (i) The statistic of the path, such as the average path length, the most frequently accessed node and its feature, the difference between decisions made by human and LLM like the title level distribution and the title position distribution. (ii) The metrics to measure how closer each move made to the destination, such as the distance change to the destination, or the embedding change which is detailed in 4.
+4. If we map each node in the graph into a vector, then we can get a measure of the distance between two nodes, which can be on the graph scale and semantic scale. (i) Graph embedding: by applying Node2Vec, this embedding contains the structural information related to graph. (ii) Semantic embedding: by applying SentenceTransformer, we could turn each node(title) into vector, which contains the semantic information to the document. Once the embedding is got, the distance between two nodes can be implemented as Euclidean distance or cosine similarity, then the efficiency or semantic interpretability for each move can be measured.
+
 
 **Tool**
 
