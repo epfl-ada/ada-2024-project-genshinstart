@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Node Finder</title>
+    <title>Node Tree Finder (Ancestor Tracking)</title>
     <style>
         .container {
             margin: 20px;
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 1000px;
         }
         .search-box {
             margin-bottom: 20px;
@@ -27,28 +27,67 @@
             max-height: 800px;
             overflow-y: auto;
         }
-        .node-list {
+        .tree {
+            padding-left: 0;
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
-        .node-item {
-            padding: 8px;
+        .tree ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .tree li {
+            position: relative;
+            padding: 4px 0 4px 24px;
             cursor: pointer;
-            border-bottom: 1px solid #ddd;
         }
-        .node-item:hover {
-            background: #e0e0e0;
+        .tree li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 16px;
+            height: 1px;
+            background: #666;
+        }
+        .tree li::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            height: 100%;
+            background: #666;
+        }
+        .tree li:last-child::after {
+            height: 12px;
+        }
+        .tree .node {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tree .toggle {
+            width: 16px;
+            height: 16px;
+            line-height: 14px;
+            text-align: center;
+            border: 1px solid #666;
+            border-radius: 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .tree .leaf .toggle {
+            visibility: hidden;
         }
         .stats {
             margin-bottom: 10px;
             color: #666;
         }
-        .back-link {
-            color: blue;
-            cursor: pointer;
-            margin-bottom: 10px;
-            display: none;
+        .loading {
+            padding: 20px;
+            text-align: center;
+            color: #666;
         }
     </style>
 </head>
@@ -56,18 +95,16 @@
     <div class="container">
         <div class="search-box">
             <input type="text" id="sourceNode" placeholder="起点" value="china">
-            <input type="text" id="targetNode" placeholder="终点">
             <button id="searchButton">查找</button>
         </div>
         <div class="result-panel">
-            <div class="back-link" id="backLink">← 返回上一次搜索</div>
             <div class="stats" id="stats"></div>
-            <ul class="node-list" id="output"></ul>
+            <ul class="tree" id="output"></ul>
         </div>
     </div>
 
     <script>
-        // 在这里粘贴你的TSV数据，每行用\n分隔，列用\t分隔
+        // 示例数据
         const rawData = `# The list of all links between articles.
 # Article names are URL-encoded; e.g., in Java they can be decoded using java.net.URLDecoder.decode(articleName, "UTF-8").
 # FORMAT:   linkSource   linkTarget
@@ -119962,10 +119999,11 @@ Zulu	Swaziland
 Zulu	United_Kingdom
 Zulu	Zambia
 Zulu	Zimbabwe
-`;  // 这里替换为实际的TSV数据
+`;
 
         let fileData = null;
-        let searchHistory = [];
+        let graph = null;
+        let loadedNodes = new Set();
 
         function initData() {
             fileData = rawData.split('\n')
@@ -119975,87 +120013,115 @@ Zulu	Zimbabwe
                     return [source, target];
                 })
                 .filter(([source, target]) => source && target);
-            
+
+            graph = buildGraph(fileData);
+
             document.getElementById('stats').textContent = 
                 `数据已加载，共 ${fileData.length} 条关系`;
         }
 
-        function findNodes(source, target) {
-            if (!fileData) return [];
-            
-            const sourceLower = source?.toLowerCase();
-            const targetLower = target?.toLowerCase();
-            
-            return fileData.filter(([s, t]) => {
-                const matchSource = !source || s.toLowerCase() === sourceLower;
-                const matchTarget = !target || t.toLowerCase() === targetLower;
-                return matchSource && matchTarget;
+        function buildGraph(data) {
+            const g = new Map();
+            data.forEach(([source, target]) => {
+                const s = source.toLowerCase();
+                if (!g.has(s)) {
+                    g.set(s, []);
+                }
+                g.get(s).push(target);
             });
+            return g;
         }
 
-        function findConnectedNodes(node) {
-            if (!fileData) return [];
-            
-            const nodeLower = node.toLowerCase();
-            return fileData.filter(([s, t]) => s.toLowerCase() === nodeLower);
+        function getChildren(node) {
+            return graph.get(node.toLowerCase()) || [];
         }
 
-        function updateResults(results, title) {
-            const stats = document.getElementById('stats');
-            const output = document.getElementById('output');
-            const backLink = document.getElementById('backLink');
-            
-            stats.textContent = `${title} (${results.length} 个结果)`;
-            
-            output.innerHTML = results.map(([source, target]) => 
-                `<li class="node-item" data-node="${target}">
-                    ${source} → ${target}
-                </li>`
-            ).join('');
+        function createTreeNode(node, ancestors = new Set()) {
+            if (ancestors.has(node)) {
+                // 发现环或重复祖先，跳过
+                const li = document.createElement('li');
+                li.className = 'leaf';
+                li.textContent = node + ' (已出现过，跳过)';
+                return li;
+            }
 
-            output.querySelectorAll('.node-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const node = item.dataset.node;
-                    searchHistory.push({ results, title });
-                    showNodeDetails(node);
-                    backLink.style.display = 'block';
+            ancestors.add(node);
+
+            const children = getChildren(node);
+            const hasChildren = children.length > 0;
+            const isLoaded = loadedNodes.has(node);
+
+            const li = document.createElement('li');
+            li.className = hasChildren ? 'branch' : 'leaf';
+
+            const nodeDiv = document.createElement('div');
+            nodeDiv.className = 'node';
+
+            const toggle = document.createElement('span');
+            toggle.className = 'toggle';
+            toggle.textContent = hasChildren && isLoaded ? '−' : (hasChildren ? '+' : ' ');
+            nodeDiv.appendChild(toggle);
+
+            const label = document.createElement('span');
+            label.className = 'label';
+            label.textContent = node;
+            nodeDiv.appendChild(label);
+
+            li.appendChild(nodeDiv);
+
+            if (hasChildren && isLoaded) {
+                li.appendChild(createSubTree(node, ancestors));
+            }
+
+            if (hasChildren) {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const ul = li.querySelector('ul');
+                    if (ul) {
+                        ul.remove();
+                        toggle.textContent = '+';
+                        loadedNodes.delete(node);
+                    } else {
+                        loadedNodes.add(node);
+                        li.appendChild(createSubTree(node, ancestors));
+                        toggle.textContent = '−';
+                    }
                 });
-            });
+            } else {
+                // 没有子节点则隐藏toggle
+                toggle.style.visibility = 'hidden';
+            }
+
+            ancestors.delete(node);
+            return li;
         }
 
-        function showNodeDetails(node) {
-            const results = findConnectedNodes(node);
-            updateResults(results, `从 "${node}" 出发的连接`);
+        function createSubTree(node, ancestors) {
+            const children = getChildren(node);
+            const ul = document.createElement('ul');
+            const fragment = document.createDocumentFragment();
+            children.forEach(child => {
+                fragment.appendChild(createTreeNode(child, new Set(ancestors)));
+            });
+            ul.appendChild(fragment);
+            return ul;
+        }
+
+        function updateTree(rootNode) {
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+            loadedNodes = new Set([rootNode]);
+            output.appendChild(createTreeNode(rootNode));
         }
 
         document.getElementById('searchButton').addEventListener('click', function() {
             if (!fileData) {
                 initData();
             }
-
-            searchHistory = [];
-            document.getElementById('backLink').style.display = 'none';
             
             const source = document.getElementById('sourceNode').value.trim();
-            const target = document.getElementById('targetNode').value.trim();
-            
-            const results = findNodes(source, target);
-            let title = '查询结果';
-            if (source && target) {
-                title = `从 "${source}" 到 "${target}" 的连接`;
-            } else if (source) {
-                title = `从 "${source}" 出发的连接`;
-            } else if (target) {
-                title = `到达 "${target}" 的连接`;
-            }
-            updateResults(results, title);
-        });
-
-        document.getElementById('backLink').addEventListener('click', function() {
-            if (searchHistory.length > 0) {
-                const previous = searchHistory.pop();
-                updateResults(previous.results, previous.title);
-                this.style.display = searchHistory.length > 0 ? 'block' : 'none';
+            if (source) {
+                updateTree(source);
             }
         });
 
