@@ -210,3 +210,50 @@ def visualize_paths_treemap(paths, categories_df, title):
     return nodes_df
 
 
+
+def calculate_target_scores(path, embeddings):
+    articles = path
+    destination = articles[-1]  
+    target_scores = []
+
+    nodes_stack = []
+    prev_node = articles[0]
+
+    for i in range(1, len(articles)):
+        current_node = articles[i]
+        if current_node == '<' or current_node == 'back':
+            try:
+                current_node = nodes_stack.pop()
+            except IndexError:
+                raise ValueError("Back in the beginning")
+        else:
+            nodes_stack.append(prev_node)
+
+        # Calculate the distance from the current node to the destination
+        current_distance = 1 - embedding_distance(current_node, destination, embeddings)
+        target_scores.append(current_distance)
+
+        # Update the previous distance for the next move
+        prev_node = current_node
+        
+    return target_scores
+
+
+def score_filtering(closeness_scores, path_len, len, first_n):
+    filtered_scores = {}
+    for (key, scores), lengths in zip(closeness_scores.items(), path_len):
+
+        for length, scores in zip(lengths, scores):
+
+            if length >= len:
+                filtered_scores.setdefault(key, []).append(scores[:first_n])
+    return filtered_scores
+
+# Node Degree Comparison
+def compute_path_degrees(paths, degrees):
+    paths_degrees = {
+        key: [[degrees.get(node, 0) for node in path] for path in path_list]
+        for key, path_list in paths.items()
+    }
+    return paths_degrees
+
