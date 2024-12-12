@@ -1,6 +1,9 @@
 import numpy as np
 import networkx as nx
 from scipy.spatial.distance import cosine
+import pandas as pd
+import random
+import plotly.graph_objects as go
 
 def calculate_shortest_path_length(path, shortest_path_matrix):
     articles = path.split(';')
@@ -105,4 +108,105 @@ def calculate_rank_of_neighbors(path, graph, embeddings):
         prev_node = current_node
         
     return ranks
+
+
+def process_paths_to_categories(paths, categories_df):
+    nodes = {}
+    article_to_category = dict(zip(categories_df['article'], categories_df['category']))
+
+    # store the messages
+    all_articles = set()
+    for path_list in paths.values():
+        for path in path_list:
+            all_articles.update(path)
+
+    for article in all_articles:
+        category_parts = article_to_category.get(article, 'Unknown').split('.')
+        path_parts = category_parts + [article]
+
+        for i, part in enumerate(path_parts):
+            node_id = '.'.join(category_parts[:i] + [part])
+            parent_id = '.'.join(category_parts[:i]) if i > 0 else ''
+            if node_id not in nodes:
+                nodes[node_id] = {
+                    'id': node_id,
+                    'name': part,
+                    'parent': parent_id,
+                    'size': 0
+                }
+            nodes[node_id]['size'] += 1
+
+    # build DataFrame
+    nodes_df = pd.DataFrame.from_dict(nodes, orient='index')
+
+    parent_sizes = nodes_df.set_index('id')['size'].to_dict()
+    nodes_df['relative_size'] = nodes_df.apply(
+        lambda row: (row['size'] / parent_sizes.get(row['parent'], row['size'])) * 100
+        if parent_sizes.get(row['parent'], row['size']) else 100,
+        axis=1
+    )
+    return nodes_df
+
+def create_treemap(ids, labels, parents, values, hover_text, title):
+    colors = [f"#{random.randint(30, 150):02x}{random.randint(30, 150):02x}{random.randint(30, 150):02x}" for _ in ids]
+
+    fig = go.Figure(go.Treemap(
+        ids=ids,
+        labels=labels,
+        parents=parents,
+        values=values,
+        hovertext=hover_text,
+        hoverinfo="text",
+        maxdepth=2,
+        branchvalues="total",
+        marker=dict(colors=colors, line=dict(width=1, color='#000000')),
+        textfont=dict(color='white', size=16),
+        textposition="middle center",
+        hoverlabel=dict(bgcolor='#2c3e50', font=dict(color='white'))
+    ))
+
+    fig.update_layout(
+        width=1000,
+        height=800,
+        title=dict(
+            text=title,
+            xanchor='center',
+            x=0.5,
+            yanchor='top',
+            font=dict(color='white')
+        ),
+        paper_bgcolor='#111111',
+        plot_bgcolor='#111111',
+        font=dict(color='white')
+    )
+    return fig
+
+def visualize_paths_treemap(paths, categories_df, title):
+    nodes_df = process_paths_to_categories(paths, categories_df)
+
+    # print(f"Category Statistics for {title}:")
+    # print(nodes_df[['name', 'size', 'relative_size']])
+
+    # Visualization
+    ids = nodes_df['id']
+    labels = nodes_df.apply(
+        lambda row: f"{row['name']}" if row['size'] == 1 else f"{row['name']}<br>({row['relative_size']:.2f}%)",
+        axis=1
+    )
+    parents = nodes_df['parent']
+    values = nodes_df['size']
+
+    hover_text = nodes_df.apply(
+        lambda row: "Article" if row['size'] == 1 else
+        f"Full Category: {row['id']}<br>"
+        f"Size: {row['size']}<br>"
+        f"Percentage: {row['relative_size']:.2f}%",
+        axis=1
+    )
+
+    fig = create_treemap(ids, labels, parents, values, hover_text, title)
+    fig.show()
+
+    return nodes_df
+
 
