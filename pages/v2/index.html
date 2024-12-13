@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Rational or emotional.</title>
+		<title>Race Through Wikipedia City</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -34,8 +34,8 @@
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1>Rational or emotional: </h1>
-							<h1>Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game.</h1>
+							<h1>Who's the Better Navigator?</h1>
+							<h1>A Race Through Wikipedia City: Humans vs LLMs</h1>
 							<p>The project aims to explore and compare the strategies of humans and large language models(LLMs) in the Wikipedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We will investigate whether LLMs are better at finding the shortest paths than humans in terms of efficiency and whether their strategies for finding paths differ significantly from those of humans. Through these analyses, we aim to explore whether LLMs have a deeper or more superficial understanding of semantics compared to humans and whether the LLMs are more perceptual or rational compared to humans.</p>
 							<ul class="actions">
 							</ul>
@@ -73,7 +73,7 @@
 									<div >
 										<p>To compare the efficiency of different navigation approaches, we plotted this box plot showing three key measures: the shortest possible path (blue dots), AI-generated paths (red), and human paths (green). Each line in the plot represents a different article pair. Looking at the spread of the boxes, we can see that while AI paths are generally longer than the shortest possible routes, they tend to be more consistent and often shorter than human paths - suggesting our AI agent has learned to find relatively efficient routes between articles!</p>
 										<div style="height: 400px;width: fit-content;overflow-x: auto;">
-											<img src="./images/box_plot.png" width="1000px">
+											<img src="./images/box_plot.png" width="100%">
 										</div>
 									</div>
 								</div>
@@ -85,7 +85,7 @@
 									<h2>Closeness Score</h2>
 									<div >
 										<p>In this graph, we plotted the closeness score distribution for different navigation paths. The three curves show how AI paths (pink), human paths (green), and shortest possible paths (blue) compare in terms of their efficiency. The higher peaks of AI and human paths around 0.0-0.25 suggest that both tend to take similar, moderately efficient routes. However, the blue curve's notable peak around 0.75 indicates that the shortest possible paths are often quite different from the routes that both humans and AI naturally choose - a fascinating insight into navigation behavior!</p>
-										<img src="./images/closeness_score.png" width="800px">
+										<img src="./images/closeness_score.png" width="100%">
 									</div>
 								</div>
 							</div>
@@ -96,14 +96,45 @@
 									<h2>Rank of neighbors</h2>
 									<div >
 										<p>This graph shows how often AI, humans, and shortest paths use links at different positions on a Wikipedia page. The blue bars (shortest path) have a very high peak near rank 0, meaning the most efficient paths often use links found at the beginning of articles. Both AI paths (pink) and human paths (green) follow a similar pattern but with lower peaks - this suggests that while they also tend to use early links, they're more likely to explore links found further down the page. </p>
-										<img src="./images/rank_of_neighbors.png" width="800px">
+										<img src="./images/rank_of_neighbors.png" width="100%">
 									</div>
 								</div>
 							</div>
 						</section>
 						
-			
-					
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Density Histogram of Path Lengths</h2>
+									<div >
+										<p>This graph shows how often AI, humans, and shortest paths use links at different positions on a Wikipedia page. The blue bars (shortest path) have a very high peak near rank 0, meaning the most efficient paths often use links found at the beginning of articles. Both AI paths (pink) and human paths (green) follow a similar pattern but with lower peaks - this suggests that while they also tend to use early links, they're more likely to explore links found further down the page. </p>
+										<img src="./images/density_histogram_of_path_lengths.png" width="100%">
+									</div>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Step Wise Average Closeness Scores</h2>
+									<div >
+										<p>While the AI (orange line) starts with a higher closeness score and stays fairly steady in the first few steps, humans (blue line) start lower but show a more consistent upward trend towards their target. Humans seem to get steadily closer to their goal with each step, while the AI's progress is more gradual until the later steps. This suggests that humans might be better at planning their overall route, while our AI takes a more cautious approach before making its final moves towards the target!</p>
+										<img src="./images/step_wise_average_closeness_scores.png" width="100%">
+									</div>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Step Wise Average Degrees</h2>
+									<div >
+										<p>Both AI (orange line) and humans (blue line) show a similar pattern - they quickly move to highly connected pages in step 2 (with around 300 links), probably using these as "hub" pages to help with navigation. After that peak, both gradually move to less connected pages as they get closer to their targets, though humans tend to stay on slightly more connected pages in the final steps. </p>
+										<img src="./images/step_wise_average_degrees.png" width="100%">
+									</div>
+								</div>
+							</div>
+						</section>
 					</section>
 
 				<!-- Two -->
