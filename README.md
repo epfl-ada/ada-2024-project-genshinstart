@@ -1,32 +1,22 @@
 # Readme
 
-## Project Proposal - Rational or emotional: Comparative Study of Human and LLM Pathfinding in the Wikispeedia Game
+## Project Who's the Better Navigator? A Race Through Wikipedia City: Humans vs GPT
 
 ### Introduction
 
 **Abstract:**
 
-The project aims to explore and compare the strategies of humans and large language models(LLMs) in the Wikipedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We will investigate whether LLMs are better at finding the shortest paths than humans in terms of efficiency and whether their strategies for finding paths differ significantly from those of humans. Through these analyses, we aim to explore whether LLMs have a deeper or more superficial understanding of semantics compared to humans and whether the LLMs are more perceptual or rational compared to humans.
+The project aims to explore and compare the strategies of humans and GPT in the Wikispeedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We will investigate the difference of human navigation paths and GPT navigation paths LLMs and there strategy. Besides, by comparing with optimal paths, we will try to improve the prompt for better performance.
 
 **Motivation:**
 
-By exploring the differences in semantic understanding and exploration patterns between humans and LLMs, the project helps to understand the cognitive strengths as well as limitations of AI and humans. This will help determine whether AIs have near-human thinking patterns and comprehension abilities. As a result, the project can advance our knowledge and judgment of AI's semantic comprehension capabilities.
+With the rapid development of LLMs, its application scenarios have become more extensive, whether it can migrate to the search problem is an interesting topic. In the Wikispeedia game, finding the possible shortest paths in a graph under the implicit semantic information between nodes could be an example to this problem.
 
-**Research Question and Story:**
+**Research Question:**
 
-In this project, we ought to study the following questions:
-
-Do LLMs outperform humans in finding the shortest paths between semantically closely related and unrelated words in the Wikispeedia game? 
-
-How do LLMs’ strategies differ from human strategies when navigating between concepts? 
-
-Do the paths taken by LLMs reflect a deeper or more superficial understanding of the semantic connections between words compared to human paths? 
-
-Are there any biases or noises in the paths taken by humans?
-
-Is there a possibility of AI a priori?
-
-By answering the question above, we can measure the paths from four different perspectives: performance strengths and weaknesses, strategy differences, depth of understanding and bias existence.
+What are the differences between AI, human and optimal paths?
+What are the differences between AI and human strategies?
+Could we improve the prompt to get better results?
 
 ### Implement: 
 
@@ -67,7 +57,7 @@ OpenAI:Chatgpt 4o-mini
 
 ### Conclusion
 
-This project compares the abilities of humans and LLMs to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. This study will determine whether LLMs exhibit similarities to human reasoning or possess their own unique logical patterns. Ultimately, our goal is to better assess the current capabilities of LLM models in understanding complex information.
+This project compares the abilities of humans and GPT to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. 
 
 ## Project Structure
 
