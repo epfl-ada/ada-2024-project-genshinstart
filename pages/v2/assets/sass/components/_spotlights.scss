@@ -61,17 +61,14 @@
 				}
 			}
 
-			&:nth-child(1) {
+			&:nth-child(odd) {
+				background-color: rgba(0, 0, 0, 0.1); /* 奇数行样式 */
 			}
-
-			&:nth-child(2) {
-				background-color: rgba(0,0,0,0.05);
+			
+			&:nth-child(even) {
+				background-color: rgba(0, 0, 0, 0.05); /* 偶数行样式 */
 			}
-
-			&:nth-child(3) {
-				background-color: rgba(0,0,0,0.1);
-			}
-
+			
 			&.inactive,
 			body.is-preload & {
 				> .image {

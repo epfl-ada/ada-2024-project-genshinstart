@@ -20,9 +20,9 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Intro</a></li>
-							<li><a href="#one">Who we are</a></li>
-							<li><a href="#two">What we do</a></li>
-							<li><a href="#three">Get in touch</a></li>
+							<li><a href="#design">Experiment Design</a></li>
+							<li><a href="#analysis">Data Analysis</a></li>
+							<li><a href="#conclusion">Conclusion</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -43,65 +43,93 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
+					<section id="design" class="wrapper style2 spotlights">
 						<section>
 							<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 							<div class="content">
 								<div class="inner">
-									<h2>Basic Analysis</h2>
-									<p></p>
-									<ul class="actions">
-									</ul>
+									<h2>Human Paths Treemap</h2>
+									<p>In order to better understand human navigation patterns, our group created this treemap visualization to analyze the category distribution of articles used in player paths. </p>
+										<iframe src="../../charts/human_paths_treemap.html" style="display: inline-block; width: 1010px; height: 937px;transform-origin: left top; transform: scale(0.635, 0.625)"></iframe>
+									<p style="margin-top: -400px;">The big blocks of Science (24.62%) and Geography (19.95%) tell an interesting story - these are like the popular highways that players love to use when finding their way from one article to another!</p>
 								</div>
 							</div>
 						</section>
 						<section>
-							<!-- <a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a> -->
+							<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 							<div class="content">
-								<div class="inner">
-									<h2>More Important Analysis</h2>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
+								<div class="inner" style="height: 800px;">
+									<h2>AI Paths Treemap</h2>
+									<p>Similarly, we created this treemap to visualize how AI navigates through Wikipedia articles. Interestingly, the AI shows a pattern quite close to human players - it also heavily relies on Science (27.89%) and Geography (17.59%) articles as its main navigation paths. This similarity suggests that our AI agent has learned to use these broad, well-connected categories much like humans do when finding their way through the Wikipedia network!</p>
+										<iframe src="../../charts/ai_paths_treemap.html" style="display: inline-block; width: 1010px; height: 937px;transform-origin: left top; transform: scale(0.635, 0.625)"></iframe>
+									
 								</div>
 							</div>
 						</section>
 						<section>
-							<!-- <a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a> -->
 							<div class="content">
 								<div class="inner">
-									<h2>Ultricies aliquam</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
+									<h2>Box plot</h2>
+									<div >
+										<p>To compare the efficiency of different navigation approaches, we plotted this box plot showing three key measures: the shortest possible path (blue dots), AI-generated paths (red), and human paths (green). Each line in the plot represents a different article pair. Looking at the spread of the boxes, we can see that while AI paths are generally longer than the shortest possible routes, they tend to be more consistent and often shorter than human paths - suggesting our AI agent has learned to find relatively efficient routes between articles!</p>
+										<div style="height: 400px;width: fit-content;overflow-x: auto;">
+											<img src="./images/box_plot.png" width="1000px">
+										</div>
+									</div>
 								</div>
 							</div>
 						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Closeness Score</h2>
+									<div >
+										<p>In this graph, we plotted the closeness score distribution for different navigation paths. The three curves show how AI paths (pink), human paths (green), and shortest possible paths (blue) compare in terms of their efficiency. The higher peaks of AI and human paths around 0.0-0.25 suggest that both tend to take similar, moderately efficient routes. However, the blue curve's notable peak around 0.75 indicates that the shortest possible paths are often quite different from the routes that both humans and AI naturally choose - a fascinating insight into navigation behavior!</p>
+										<img src="./images/closeness_score.png" width="800px">
+									</div>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Rank of neighbors</h2>
+									<div >
+										<p>This graph shows how often AI, humans, and shortest paths use links at different positions on a Wikipedia page. The blue bars (shortest path) have a very high peak near rank 0, meaning the most efficient paths often use links found at the beginning of articles. Both AI paths (pink) and human paths (green) follow a similar pattern but with lower peaks - this suggests that while they also tend to use early links, they're more likely to explore links found further down the page. </p>
+										<img src="./images/rank_of_neighbors.png" width="800px">
+									</div>
+								</div>
+							</div>
+						</section>
+						
+			
+					
 					</section>
 
 				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
+					<section id="conclusion" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>What we do</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<h2>Prompt</h2>
+							<p>Our team noticed a key problem in earlier tests: the AI would sometimes try to use links that didn't actually exist on the current Wikipedia page. This was happening because the AI, with its broad knowledge, would think of logical connections between topics but didn't stick to using only the links that were actually available.
+								To fix this issue, we created a two-part prompt:</p>
 							<div class="features">
 								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Generally:</h3>
+									<p>You are an expert in navigating articles. Your goal is to find the path as short as possible from the start article to the target article by selecting the provided links. You can also return to the previous article by replying 'back'. Please reply only with the name of the article you want to move to, with no explanation or marks.</p>
 								</section>
 								<section>
-									<span class="icon solid major fa-lock"></span>
-									<h3>Aliquam sed nullam</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<span class="icon solid major fa-code"></span>
+									<h3>Specifically:</h3>
+									<p>The following reasoning steps may be helpful: 
+										<br>
+										1. Identify which of the available links might lead you closer to the target topic. 
+										<br>
+										2. Consider the relevance of each link to the target. For instance, if the target is related to a particular domain, links that share that domain are likely. 
+										<br>
+										3. If none of the links seem directly relevant, pick the one that might connect you to a more central or well-connected topic.</p>
 								</section>
-								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>Sed erat ullam corper</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
+								<!-- <section>
 									<span class="icon solid major fa-desktop"></span>
 									<h3>Veroeros quis lorem</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
@@ -115,68 +143,24 @@
 									<span class="icon major fa-gem"></span>
 									<h3>Aliquam urna dapibus</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
+								</section> -->
 							</div>
-							<ul class="actions">
+							<!-- <ul class="actions">
 								<li><a href="generic.html" class="button">Learn more</a></li>
-							</ul>
+							</ul> -->
 						</div>
 					</section>
 
 				<!-- Three -->
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>Get in touch</h2>
-							<iframe src="./results.html" frameborder="0" width="100%" height="1000px"></iframe>
+							<h2>Conclusion</h2>
 							<div class="split style1">
 								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
-											</div>
-											<div class="field">
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">Send Message</a></li>
-										</ul>
-									</form>
+									
 								</section>
 								<section>
-									<ul class="contact">
-										<li>
-											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
-										</li>
-										<li>
-											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
+								
 								</section>
 							</div>
 						</div>
