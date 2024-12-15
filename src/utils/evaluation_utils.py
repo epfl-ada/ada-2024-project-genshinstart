@@ -109,7 +109,6 @@ def calculate_rank_of_neighbors(path, graph, embeddings):
         
     return ranks
 
-
 def process_paths_to_categories(paths, categories_df):
     nodes = {}
     article_to_category = dict(zip(categories_df['article'], categories_df['category']))
@@ -257,3 +256,37 @@ def compute_path_degrees(paths, degrees):
     }
     return paths_degrees
 
+def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddings, threshold=0.85):
+    # Calculate the rank of degree of chosen nodes if the similarity with the destination is low
+    articles = path
+    destination = articles[-1]
+    rank_of_degrees = []
+
+    nodes_stack = []
+    prev_node = articles[0]
+
+    if '<' in articles or 'back' in articles:
+        return []
+
+    for i in range(1, len(articles)):
+        if prev_node not in graph.nodes:
+            print(f"Node {prev_node} is not in the graph")
+            return []
+        neighbors = list(graph.successors(prev_node))
+        neighbors_similarity = [embedding_distance(node, destination, embeddings) for node in neighbors]
+
+        current_node = articles[i]
+        if current_node == destination:
+            break
+
+        if all(similarity < threshold for similarity in neighbors_similarity):
+            degrees = [graph.degree(node) for node in neighbors]
+            if current_node in neighbors:
+                rank = sorted(degrees).index(graph.degree(current_node)) + 1
+                rank_of_degrees.append(rank)
+            else:
+                print(f"Node {current_node} is not in the neighbors of {prev_node}")
+        
+        prev_node = current_node
+    
+    return rank_of_degrees
