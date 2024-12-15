@@ -1,41 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Paths</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 25px;
-            font-size: 16px;
-            color: #000;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;     
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Who's the Better Navigator?</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/ada.svg" rel="icon">
+  <link href="assets/img/ada.svg" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body>
-    <h1>Open Directories</h1>
-    <a href="./v1/" class="button">Open v1</a>
-    <a href="./v2/" class="button">Open v2</a>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <h1 class="sitename">Who's the Better Navigator?</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#home" class="active">Home<br></a></li>
+          <li><a href="#welcome">Welcome</a></li>
+          <li><a href="#setting">GPT Setting</a></li>
+          <li><a href="#humansvsgpt">Humans vs GPT</a></li>
+          <li><a href="#improve">Improvements of Prompt</a></li>
+          <!-- <li><a href="blog.html">Blog</a></li> -->
+  
+          <!-- <li><a href="#contact">Contact</a></li> -->
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <!-- <a class="btn-getstarted flex-md-shrink-0" href="index.html#about">Get Started</a> -->
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="home" class="hero section">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up">A Race Through Wikipedia City: Humans vs GPT</h1>
+            <p data-aos="fade-up" data-aos-delay="100">A study comparing human and large language model (LLM) navigation strategies in knowledge graphs, based on the Wikispeedia dataset.</p>
+            <!-- <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200"> -->
+              <!-- <a href="#welcome" class="btn-get-started">Start exploring <i class="bi bi-arrow-right"></i></a> -->
+              <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+            <!-- </div> -->
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+            <img style=" border-radius: 10px;" src="assets/img/wikicity.png" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="welcome" class="about section">
+
+      <div class="container" data-aos="fade-up">
+        <div class="row gx-0">
+
+          <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content">
+              <h2>Welcome to the exciting race through Wiki City!</h2>
+              <p>
+                In this digital metropolis, we're comparing two types of pathfinders: 
+              </p>
+              <p>
+                🧠 <b>Humans</b>, with their trusty intuition
+                <br>
+                🤖 <b>GPT</b>, the most advanced Large Language Model by far.
+              </p>  
+              <p>
+                Each contestant starts at one Wikipedia article and must find their way to a target article by hopping through <b>hyperlinks</b> -
+                 like navigating city streets to reach home. 
+              </p>
+              <p>
+                 Through the Wikispeedia game, We will investigate the difference of human navigation paths and GPT navigation paths and thier strategies.            </p>
+              <div class="text-center text-lg-start">
+                <a href="#setting" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span>GAME START!</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img  style=" border-radius: 10px;"src="assets/img/race.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Features Section -->
+    <section id="setting" class="features section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <!-- <h2>setting</h2> -->
+        <p>GPT settings<br></p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <!-- <div class="col-xl-6" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/features.png" class="img-fluid" alt="">
+          </div> -->
+         <div class="container" data-aos="fade-up">
+        <div class="row gx-0">
+
+          <div class="col-lg-12 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content" style="padding: 0 10%;">
+              <p>To help our AI navigator find its way through Wiki City, we equipped it with a special prompt - like giving a compass to a traveler!</p>
+              <p> In our experiment, we chose to use GPT-4o mini as our AI pathfinder, balancing performance with cost-efficiency. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          <div class="col-xl-12 d-flex">
+            <div class="row align-self-center gy-4">
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Introduction</h3>
+                  
+                  <div style="padding: 0 10%;">You are an expert in navigating articles. Your goal is to find the path as short as
+                    possible from the start article to the target article by selecting the provided links. You can also return
+                    to the previous article by replying 'back'. Please reply only with the name of the article you want to
+                    move to, with no explanation or marks.</div>
+                </div>
+              </div><!-- End Feature Item -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Start of the game:</h3>
+                  <div style="padding: 0 10%;">Start at the article [start article] and navigate to [target article].</div>
+                </div>
+              </div><!-- End Feature Item -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Loop</h3>
+                  <div style="padding: 0 10%;">You are currently at the article [current article] and the target is [target article]. The
+                    available links are: [neighbors]. Which article do you want to click on next?</div>
+                </div>
+              </div><!-- End Feature Item -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Infeasible option:</h3>
+                  <div style="padding: 0 10%;">
+                    Sorry, [next article] is not a valid link in current article [current article]. Please
+choose from the following links: [neighbors].
+                  </div>
+                </div>
+              </div><!-- End Feature Item -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Back in the beginning:</h3>
+                  <div style="padding: 0 10%;">Sorry, you cannot go back from the start article [current article]. Please
+                    choose from the following links: [neighbors].
+                   </div>
+              </div><!-- End Feature Item -->
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Values Section -->
+    <section id="humansvsgpt" class="stats section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <p>Humans vs GPT</p>
+      </div><!-- End Section Title -->
+
+      <div class="col-lg-12 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="content" style="padding: 0 20% 30px;">
+          <p>We selected <b>162 (source, destination)</b> pairs which appears over <b>10 times</b> in the human navigation paths,
+            then use <b>GPT 4o-mini</b> to generate <b>five paths</b> for each pairs. The total cost for generating
+            such dataset is only <b>0.8 dollar</b>.</p>
+        </div>
+      </div>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="51318" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Finished Paths by Humans</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-emoji-tear color-orange flex-shrink-0" style="color: #ee6c20;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="24875" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Unfinished Paths by Humans</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-headset color-green flex-shrink-0" style="color: #15be56;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Attempted Frequency by Humans</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-people color-pink flex-shrink-0" style="color: #bb0852;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="162" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Paths to be tested by GPT</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- About Section -->
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+
+        <div class="col-lg-12">
+
+          <section id="blog-details" class="blog-details section" style="padding-top: 0;">
+            <div class="container" data-aos="fade-up">
+
+              <article class="article">
+
+
+                <div class="content">
+                  <div style="height: 500px; overflow-y: scroll;">
+                    <img src="assets/img/figures/boxplot.png" class="img-fluid" alt="">
+                  </div>
+                  <p>
+                    Comparison of lengths (back is also counted). We found that GPT performs better than humans
+                    on most of the topics but worse than humans on some others, we went deeper on the differences and
+                    reasons below.         
+                  </p>
+                
+                  <h3>Closeness score distribution</h3>
+                  <p>
+                    To measure how closer each step get to the destination in semantic level, we define closeness
+                    score for (current node, next node, destination) as
+                    <p>
+                      \( \cos(\text{embedding}(\text{nextnode}), \text{embedding}(\text{destination})) 
+                      - \cos(\text{embedding}(\text{currentnode}), \text{embedding}(\text{destination})) \)
+                  </p>
+                    where cos is cosine similarity and embedding is the sentence embedding of the article name
+                    corresponding to the node calculated using Sentence Transformer.        
+                  </p>
+                  <img src="./assets/img/figures/closeness_score_distribution.png" class="col-lg-6 img-fluid">
+                  <p>
+                    The higher peaks of AI and human paths around 0.0-0.25 suggest that both tend to take similar, 
+                    moderately efficient routes. However, the blue curve's notable peak around 0.75 indicates that 
+                    the shortest possible paths are often quite different from the routes that both humans and AI 
+                    naturally choose - a fascinating insight into navigation behavior!
+                  </p>
+
+                  <h3>The accumulated frequency of rank of chosen neighbor</h3>
+                  <p>
+                    We found that the GPT tends to choose the node that is semantically closer to the destina-
+                    tion compared to human. However, the shortest pats shows lower preference of neighbors
+                    with rank out of 3, which indicates that the semantically closer may not mean the graphical
+                    better performance.
+                  </p>
+                  <img src="./assets/img/figures/rank_of_neighbor.png" class="col-lg-6 img-fluid">
+                  <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low simi-
+                    larity with destination</h3>
+                  <p>
+                    If all the similarities between each neighbors with the destination is not so large, choose a
+                    nodes with larger degree may be a good strategy. So we plot the graph of the accumulated
+                    frequency of rank of chosen neighbor's degree, conditioning on low similarity with destina-
+                    tion. And we find that the Shortest path and human tends to choose the nodes with larger
+                    degree than GPT, this may be a point of improvement for prompt.
+                 </p>
+                 <img src="./assets/img/figures/rank_of_neighbors_degree.png" class="col-lg-6 img-fluid">
+                  <h3>First Step Choices in Relation to Step Lengths</h3>
+                  <p>
+                    We divided the paths into ”good” and ”bad” groups according to their lengths, and compared
+                    the closeness score and out-degrees for the first steps for different groups: 
+                    <br>
+                    <b>                    ai good, human good,
+                      optimal, ai bad, human bad. </b>
+                      <ul>  
+                        <li>Ai good: paths with length less than 1.5 times of the optimal path length</li>
+                        <li>Human good: paths
+                          with length less than 1.5 times of the optimal path length</li>
+                        <li>Optimal: the shortest path</li>
+                        <li>Ai bad: paths with length more than 1.5 times of the optimal path length</li>
+                        <li>Human bad: paths with length more than 1.5 times of the optimal path length</li>
+                      </ul>
+                    <br>
+                    <br>
+
+                    The results show that compared to longer paths, shorter paths
+                    tend to select:
+                    <ol>
+                      <li><b>Articles with higher out-degrees</b></li>
+                      <li><b>Articles with higher closeness scores</b>
+                    </ol>
+                    Also, AI tends to focus more on semantic meanings while humans select their
+                    first steps to have more out-degrees.
+                    <ul>
+                      <li>Out Degrees comparison:</li>
+                      <li>Closeness Scores comparison</li>
+                    </ul>
+                
+                    AI have a much stronger tendency to choose articles with stronger semantic relation to the
+                    target.
+                  </p>
+
+                  <img src="./assets/img/figures/first_step_degrees_comparison.png" class="col-lg-4">
+                  <img src="./assets/img/figures/mean_closeness_scores_comparison.png" class="col-lg-4" style="margin-left: 20px;">
+
+                </div><!-- End post content -->
+
+
+              </article>
+
+            </div>
+          </section><!-- /Blog Details Section -->
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <section id="improve" class="values section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <p>Improvements of Prompt<br></p>
+        <!-- <h2>Our Values</h2> -->
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+            <p style="margin: -30px 10% 30px; text-align: center;">Based on the findings above, we add some clues in the prompt and generate the paths again: The
+              following reasoning steps may be helpful:</p>
+        </div><!-- End Card Item -->
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card">
+              <h3>1.Identify which of the available links might lead you closer
+                to the target topic.</h3>
+              <!-- <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p> -->
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <h3>2.Consider the relevance of each link to the target.</h3>
+              <!-- <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p> -->
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card">
+              <h3>3.If none of the links seem directly relevant, pick the one that might connect you to a more central or well-connected topic.</h3>
+              <!-- <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p> -->
+            </div>
+          </div><!-- End Card Item -->
+
+          <section id="blog-details" class="blog-details section" style="padding-top: 0;">
+            <div class="container" data-aos="fade-up">
+
+              <article class="article">
+
+
+                <div class="content">
+                  <div style="height: 500px; overflow-y: scroll;">
+                    <img src="assets/img/figures/improved_prompt.png" class="img-fluid" alt="">
+                  </div>
+                  <p>
+                    We found in the pairs whose paths used to be longer, the new prompt improved the results, whereas
+on other shorter paths it does not affect a lot.
+                  </p>
+
+                </div><!-- End post content -->
+
+
+              </article>
+
+            </div>
+          </section><!-- /Blog Details Section -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Values Section -->
+
+    <!-- Stats Section -->
+
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    
+    <div class="container copyright text-center mt-4">
+      Group: <a href="https://github.com/epfl-ada/ada-2024-project-genshinstart">GenshinStart</a>
+      <br>
+      Github repository: <a href="https://github.com/epfl-ada/ada-2024-project-genshinstart"><i class="bi bi-github"></i></a> 
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
