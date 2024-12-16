@@ -297,8 +297,14 @@ choose from the following links: [neighbors].
 
 
                 <div class="content">
-                  <div style="height: 500px; overflow-y: scroll;">
-                    <img src="assets/img/figures/boxplot.png" class="img-fluid" alt="">
+                  <div style="height: 820px;">
+                    <iframe src="path_length_comparison.html" style="   
+                    width: 1433px;
+                    height: 1170px;
+                    transform-origin: top left;
+                    transform: scale(0.7);
+                    overflow: hidden;"></iframe>
+                    <!-- <img src="assets/img/figures/boxplot.png" class="img-fluid" alt=""> -->
                   </div>
                   <p>
                     Comparison of lengths (back is also counted). We found that GPT performs better than humans
@@ -317,7 +323,16 @@ choose from the following links: [neighbors].
                     where cos is cosine similarity and embedding is the sentence embedding of the article name
                     corresponding to the node calculated using Sentence Transformer.        
                   </p>
-                  <img src="./assets/img/figures/closeness_score_distribution.png" class="col-lg-6 img-fluid">
+                  <!-- <img src="./assets/img/figures/closeness_score_distribution.png" class="col-lg-6 img-fluid"> -->
+                   <div style="height: 450px;">
+                    <iframe src="./closeness_scores_distribution.html" style="   
+                    width: 1433px;
+                    height: 1170px;
+                    transform-origin: top left;
+                    transform: scale(0.7);
+                    overflow: hidden;"></iframe>
+                   </div>
+         
                   <p>
                     The higher peaks of AI and human paths around 0.0-0.25 suggest that both tend to take similar, 
                     moderately efficient routes. However, the blue curve's notable peak around 0.75 indicates that 
@@ -332,7 +347,15 @@ choose from the following links: [neighbors].
                     with rank out of 3, which indicates that the semantically closer may not mean the graphical
                     better performance.
                   </p>
-                  <img src="./assets/img/figures/rank_of_neighbor.png" class="col-lg-6 img-fluid">
+                  <div style="height: 450px;">
+                    <iframe src="./accumulated_distribution_of_rank_of_neighbors.html" style="   
+                    width: 1433px;
+                    height: 1170px;
+                    transform-origin: top left;
+                    transform: scale(0.7);
+                    overflow: hidden;"></iframe>
+                   </div>
+         
                   <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low simi-
                     larity with destination</h3>
                   <p>
@@ -342,7 +365,14 @@ choose from the following links: [neighbors].
                     tion. And we find that the Shortest path and human tends to choose the nodes with larger
                     degree than GPT, this may be a point of improvement for prompt.
                  </p>
-                 <img src="./assets/img/figures/rank_of_neighbors_degree.png" class="col-lg-6 img-fluid">
+                 <div style="height: 450px;">
+                  <iframe src="./accumulated_distribution_of_rank_of_neighbors_conditioned_on_low_similiarity.html" style="   
+                  width: 1433px;
+                  height: 1170px;
+                  transform-origin: top left;
+                  transform: scale(0.7);
+                  overflow: hidden;"></iframe>
+                 </div>
                   <h3>First Step Choices in Relation to Step Lengths</h3>
                   <p>
                     We divided the paths into ”good” and ”bad” groups according to their lengths, and compared
@@ -351,12 +381,14 @@ choose from the following links: [neighbors].
                     <b>                    ai good, human good,
                       optimal, ai bad, human bad. </b>
                       <ul>  
-                        <li>Ai good: paths with length less than 1.5 times of the optimal path length</li>
-                        <li>Human good: paths
-                          with length less than 1.5 times of the optimal path length</li>
-                        <li>Optimal: the shortest path</li>
-                        <li>Ai bad: paths with length more than 1.5 times of the optimal path length</li>
-                        <li>Human bad: paths with length more than 1.5 times of the optimal path length</li>
+                        <li> <b>AI Good Paths:</b> Shorter or equal to the average AI path length; stores node degrees and closeness scores.</li>
+                        <li> <b>AI Bad Paths:</b> Longer than the average AI path length; stores node degrees and closeness scores.</li>
+                        <li> <b>Human Good Paths:</b> Shorter or equal to the average human path length; stores node degrees and closeness scores.</li>
+                        <li> <b>Human Bad Paths:</b> Longer than the average human path length
+                        ; stores node degrees and closeness scores.</li>
+                        <li> <b>Optimal Paths:</b> Shortest paths used as a benchmark; stores node degrees and closeness scores.</li>
+                      </ul>
+
                       </ul>
                     <br>
                     <br>
@@ -377,10 +409,25 @@ choose from the following links: [neighbors].
                     AI have a much stronger tendency to choose articles with stronger semantic relation to the
                     target.
                   </p>
-
-                  <img src="./assets/img/figures/first_step_degrees_comparison.png" class="col-lg-4">
-                  <img src="./assets/img/figures/mean_closeness_scores_comparison.png" class="col-lg-4" style="margin-left: 20px;">
-
+                  <div style="display: flex;">
+                    <div style="height: 450px; width: 520px;">
+                      <iframe src="./mean_out_degrees_comparison.html" style="   
+                      width: 1433px;
+                      height: 1170px;
+                      transform-origin: top left;
+                      transform: scale(0.7);
+                      overflow: hidden;"></iframe>
+                    </div>
+                    <div style="height: 450px;">
+                      <iframe src="./mean_closeness_scores_comparison.html" style="   
+                      width: 1433px;
+                      height: 1170px;
+                      transform-origin: top left;
+                      transform: scale(0.7);
+                      overflow: hidden;"></iframe>
+                    </div>
+                  </div>
+            
                 </div><!-- End post content -->
 
 
@@ -444,7 +491,7 @@ choose from the following links: [neighbors].
                   </div>
                   <p>
                     We found in the pairs whose paths used to be longer, the new prompt improved the results, whereas
-on other shorter paths it does not affect a lot.
+                      on other shorter paths it does not affect a lot.
                   </p>
 
                 </div><!-- End post content -->
