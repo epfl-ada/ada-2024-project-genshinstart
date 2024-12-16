@@ -348,7 +348,7 @@ choose from the following links: [neighbors].
                     better performance.
                   </p>
                   <div style="height: 450px;">
-                    <iframe src="./accumulated_distribution_of_neighbors.html" style="   
+                    <iframe src="./accumulated_distribution_of_rank_of_neighbors.html" style="   
                     width: 1433px;
                     height: 1170px;
                     transform-origin: top left;
@@ -365,7 +365,14 @@ choose from the following links: [neighbors].
                     tion. And we find that the Shortest path and human tends to choose the nodes with larger
                     degree than GPT, this may be a point of improvement for prompt.
                  </p>
-                 <img src="./assets/img/figures/rank_of_neighbors_degree.png" class="col-lg-6 img-fluid">
+                 <div style="height: 450px;">
+                  <iframe src="./accumulated_distribution_of_rank_of_neighbors_conditioned_on_low_similiarity.html" style="   
+                  width: 1433px;
+                  height: 1170px;
+                  transform-origin: top left;
+                  transform: scale(0.7);
+                  overflow: hidden;"></iframe>
+                 </div>
                   <h3>First Step Choices in Relation to Step Lengths</h3>
                   <p>
                     We divided the paths into ”good” and ”bad” groups according to their lengths, and compared
