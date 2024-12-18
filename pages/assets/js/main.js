@@ -206,5 +206,29 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const iframe = entry.target;
+          if (iframe.dataset.src) {
+              iframe.src = iframe.dataset.src; 
+              delete iframe.dataset.src;
+              observer.unobserve(iframe);
+          }
+        }
+    });
+}, {
+  rootMargin: '500px 0px'
+});
+
+document.querySelectorAll('iframe').forEach(container => {
+  observer.observe(container);
+});
 
 })();
