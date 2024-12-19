@@ -191,6 +191,6 @@ def correlation_between_embedding_and_distance(graph, embeddings, sample_num):
     plt.show()
     '''
     
-    df = pd.DataFrame({'distance': distances, 'cosine distance': cosine_distances})
-    sns.jointplot(data=df, x='distance', y='cosine_distance', kind='reg')
+    df = pd.DataFrame({'Distance': distances, 'Cosine Distance': cosine_distances})
+    sns.jointplot(data=df, x='Distance', y='Cosine Distance', kind='reg')
     plt.show()

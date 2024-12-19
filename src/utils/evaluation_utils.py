@@ -290,3 +290,52 @@ def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddin
         prev_node = current_node
     
     return rank_of_degrees
+
+def paths_comparation(paths_1, paths_2, ori_dest):
+    failure_1 = 0
+    failure_2 = 0
+    shorter_1 = 0
+    shorter_2 = 0
+    paths_length_1 = []
+    paths_length_2 = []
+
+    for pair in ori_dest:
+        start_article, target_article = pair
+        paths = paths_1[pair]
+        path_lengths = [len(path) for path in paths if path is not None]
+        if len(path_lengths) == 0:
+            avg_path_length_1 = 'No path found'
+        else:
+            avg_path_length_1 = np.mean(path_lengths)
+        if avg_path_length_1 == 'No path found':
+            failure_1 += 1
+
+        paths = paths_2[pair]
+        path_lengths = [len(path) for path in paths if path is not None]
+        if len(path_lengths) == 0:
+            avg_path_length_2 = 'No path found'
+        else:
+            avg_path_length_2 = np.mean(path_lengths)
+        if avg_path_length_2 == 'No path found':
+            failure_2 += 1
+
+        if avg_path_length_1 == 'No path found' or avg_path_length_2 == 'No path found':
+            continue
+        
+        if avg_path_length_1 > avg_path_length_2:
+            shorter_2 += 1
+        elif avg_path_length_1 < avg_path_length_2:
+            shorter_1 += 1
+        
+        paths_length_1.append(avg_path_length_1)
+        paths_length_2.append(avg_path_length_2)
+
+        
+    print(f'Failure rate for Paths 1: {failure_1/len(ori_dest)}, Path 2: {failure_2/len(ori_dest)}')
+    print(f'Number of paths that are shorter for Paths 1: {shorter_1}, Path 2: {shorter_2}')
+
+    # calculate the statistics of the path length
+    paths_length_1 = [length for length in paths_length_1 if length != 'No path found']
+    paths_length_2 = [length for length in paths_length_2 if length != 'No path found']
+    print(f'Average for Path 1: {np.mean(paths_length_1)}, Path 2: {np.mean(paths_length_2)}')
+    print(f'Median path length for Path 1: {np.median(paths_length_1)}, Path 2: {np.median(paths_length_2)}')
