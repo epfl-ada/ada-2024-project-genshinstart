@@ -256,7 +256,7 @@ def compute_path_degrees(paths, degrees):
     }
     return paths_degrees
 
-def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddings, threshold=0.85):
+def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddings, threshold=0.30):
     # Calculate the rank of degree of chosen nodes if the similarity with the destination is low
     articles = path
     destination = articles[-1]
@@ -273,7 +273,7 @@ def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddin
             print(f"Node {prev_node} is not in the graph")
             return []
         neighbors = list(graph.successors(prev_node))
-        neighbors_similarity = [embedding_distance(node, destination, embeddings) for node in neighbors]
+        neighbors_similarity = [1 - embedding_distance(node, destination, embeddings) for node in neighbors]
 
         current_node = articles[i]
         if current_node == destination:
