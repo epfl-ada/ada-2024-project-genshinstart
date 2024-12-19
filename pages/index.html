@@ -53,6 +53,8 @@
           <li><a href="#setting">GPT Setting</a></li>
           <li><a href="#humansvsgpt">Humans vs GPT</a></li>
           <li><a href="#improve">Improvements of Prompt</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
+
           <!-- <li><a href="blog.html">Blog</a></li> -->
   
           <!-- <li><a href="#contact">Contact</a></li> -->
@@ -94,23 +96,24 @@
       <div class="container" data-aos="fade-up">
         <div class="row gx-0">
 
-          <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-9 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
             <div class="content">
-              <h2>Welcome to the exciting race through Wiki City!</h2>
+              <h2>Welcome to Wiki City!</h2>
               <p>
-                In this digital metropolis, we're comparing two types of pathfinders: 
-              </p>
+                Welcome to Wiki City, a metropolis of knowledge where navigating through ideas can feel like exploring a maze. Humans often rely on intuition and personal experience to find their way, but could an AI companion, like a Large Language Model (LLM), chart a faster, more efficient path?              </p>
               <p>
-                🧠 <b>Humans</b>, with their trusty intuition
+                To explore this, we turn to a game called Wikispeedia. Players start at one Wikipedia article and attempt to reach a target article, moving only through hyperlinks. By comparing how humans and LLMs navigate under these constraints, we aim to discover who performs better and learn how to enhance AI companions.
+
+               </p>
+              
+                <h3>
+                  Meet the Pathfinders:
+                </h3>
+              <p>
+                🧠 <b>Humans</b>, with their trusty intuition.
                 <br>
                 🤖 <b>GPT</b>, the most advanced Large Language Model by far.
               </p>  
-              <p>
-                Each contestant starts at one Wikipedia article and must find their way to a target article by hopping through <b>hyperlinks</b> -
-                 like navigating city streets to reach home. 
-              </p>
-              <p>
-                 Through the Wikispeedia game, We will investigate the difference of human navigation paths and GPT navigation paths and thier strategies.            </p>
               <div class="text-center text-lg-start">
                 <a href="#setting" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>GAME START!</span>
@@ -120,7 +123,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+          <div class="col-lg-3 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
             <img  style=" border-radius: 10px;"src="assets/img/race.png" class="img-fluid" alt="">
           </div>
 
@@ -148,12 +151,24 @@
          <div class="container" data-aos="fade-up">
         <div class="row gx-0">
 
-          <div class="col-lg-12 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="content" style="padding: 0 10%;">
-              <p>To help our AI navigator find its way through Wiki City, we equipped it with a special prompt - like giving a compass to a traveler!</p>
-              <p> In our experiment, we chose to use GPT-4o mini as our AI pathfinder, balancing performance with cost-efficiency. </p>
+          <div class="col-lg-10 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content" >
+              <p>Wait! Before the official start of the game, we need to make sure our AI challenger understands the play
+                rules.
+              </p><p>
+                We gave the AI a guidebook called <b>'prompt'</b> which includes clear rules and instructions, allowing
+                it to avoid irrational mistakes.</p>
+              <p> Our AI challenger's name is <b>GPT-4o mini</b>, a lightweight yet powerful and experienced AI tool, eager
+                to prove itself against natural human instinct.
+              </p><p>
+                The content of the rulebook is in the following.</p>
             </div>
           </div>
+
+          <div class="col-lg-2 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+            <img  style="width:200px; border-radius: 10px;"src="assets/img/ultron.gif" class="fade-up" alt="">
+          </div>
+
         </div>
       </div>
 
@@ -217,23 +232,42 @@ choose from the following links: [neighbors].
 
       </div>
 
+      </div>
+
     </section><!-- /Features Section -->
 
     <!-- Values Section -->
     <section id="humansvsgpt" class="stats section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title" data-aos="fade-up" style="padding: 0;">
         <p>Humans vs GPT</p>
       </div><!-- End Section Title -->
+      <div class="container">
+      <div class="row gx-5">
+      <div class="col-lg-10 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="content" style="padding-right: 10%">
+          <p>After all preparations, it is time to start the game.</p>
+          <p>
+            To make the competition fair and reasonably balanced, we excluded portions of the paths only
+travelled by few people. Thus, we have <b>159</b> pairs of a start and a target article the participants
+(human or AI) must find. These (source, destination) pairs appear more than <b>10 times</b> in the navigation
+patterns of humans
+          </p>
 
-      <div class="col-lg-12 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="content" style="padding: 0 20% 30px;">
-          <p>We selected <b>162 (source, destination)</b> pairs which appears over <b>10 times</b> in the human navigation paths,
-            then use <b>GPT 4o-mini</b> to generate <b>five paths</b> for each pairs. The total cost for generating
-            such dataset is only <b>0.8 dollar</b>.</p>
+          <p>
+            Equipped with these herculean tasks, our GPT-4o mini now has to take on the challenge and find
+            the target article while navigating the maze of knowledge that is Wiki City. To be sure that it is
+            actually good, our AI companion has to do this <b>5 times</b> for each of the 159 pairs.
+            While this may sound expensive, generating such a dataset is only <b>0.8 dollars.</b>
+          </p>
         </div>
       </div>
+      <div class="col-lg-2 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+        <img  style="width:200px; border-radius: 10px; margin: 30px -25%;"src="assets/img/skynet.gif" class="fade-up" alt="">
+      </div>
+      </div>
+    </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
@@ -272,7 +306,7 @@ choose from the following links: [neighbors].
             <div class="stats-item d-flex align-items-center w-100 h-100">
               <i class="bi bi-people color-pink flex-shrink-0" style="color: #bb0852;"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="162" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="159" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Paths to be tested by GPT</p>
               </div>
             </div>
@@ -307,15 +341,28 @@ choose from the following links: [neighbors].
                     <!-- <img src="assets/img/figures/boxplot.png" class="img-fluid" alt=""> -->
                   </div>
                   <p>
-                    Comparison of lengths (back is also counted). We found that GPT performs better than humans
-                    on most of the topics but worse than humans on some others, we went deeper on the differences and
-                    reasons below.         
+                    Comparison of lengths The most basic metric of the game is the length of the paths (including
+                    backtracking) to measure how far the traveller (human or AI) will walk until they arrive at their
+                    destination.
+                  <p>  
+                    Our mighty AI companion was indeed faster than humans on several topics but on others it took
+                    a much longer path instead.
+                  </p>
+                  <p>
+                    As this metric alone cannot reveal why these differences occur, we need to investigate deeper.
                   </p>
                 
                   <h3>Closeness score distribution</h3>
                   <p>
-                    To measure how closer each step get to the destination in semantic level, we define closeness
-                    score for (current node, next node, destination) as
+                    To gain more details, we next considered a measure that evaluates how each step advances
+                    towards the destination in a semantic space. Semantic here means how close the neighbour-
+                    hood where the traveller is now is compared to the final destination in Wiki City.
+                  </p>
+                  <p>
+                    We define it as the closeness score: for each transition (current node, next node, destination)
+                    the score is given by the following formula:
+                  </p>
+
                     <p>
                       \( \cos(\text{embedding}(\text{nextnode}), \text{embedding}(\text{destination})) 
                       - \cos(\text{embedding}(\text{currentnode}), \text{embedding}(\text{destination})) \)
@@ -334,18 +381,28 @@ choose from the following links: [neighbors].
                    </div>
          
                   <p>
-                    The higher peaks of AI and human paths around 0.0-0.25 suggest that both tend to take similar, 
-                    moderately efficient routes. However, the blue curve's notable peak around 0.75 indicates that 
-                    the shortest possible paths are often quite different from the routes that both humans and AI 
-                    naturally choose - a fascinating insight into navigation behavior!
+                    What is interesting is that both human and machine are actually not so different from each
+                    other.
+                    <p></p>
+                    Observing the graphic, we find the GPT companion and humans have a similar peak around
+                    0 - 0.1 (closeness score).
+                    <p></p>
+                    This differs heavily from the ideal distribution where another high peak of density is observed
+                    around a closeness score of 0.75.
+                    <p></p>
+                    This means that both humans and AI take moderately efficient paths navigating the streets
+                    of Wiki City, and that there might exist some shortcuts or other routes that neither humans
+                    nor AI would choose naturally - a fascinating insight into navigation behaviour!
+                 
                   </p>
 
                   <h3>The accumulated frequency of rank of chosen neighbor</h3>
                   <p>
-                    We found that the GPT tends to choose the node that is semantically closer to the destina-
-                    tion compared to human. However, the shortest pats shows lower preference of neighbors
-                    with rank out of 3, which indicates that the semantically closer may not mean the graphical
-                    better performance.
+                    Beyond semantics, let us focus on another dimension: how the structure of Wiki City intersections affects navigation decisions.
+                  </p>
+                  <p>
+                    We used the accumulated frequency of rank of chosen neighbour, which can show some
+                    strategies of the paths chosen.
                   </p>
                   <div style="height: 500px;">
                     <iframe loading="lazy" data-src="./accumulated_distribution_of_rank_of_neighbors.html" style="   
@@ -355,15 +412,28 @@ choose from the following links: [neighbors].
                     transform: scale(0.8) translateX(21.5%);
                     overflow: hidden;"></iframe>
                    </div>
-         
-                  <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low simi-
+                   <p>
+                    As a result, the figure shows that the GPT tends to choose nodes semantically closer to the
+                    destination than humans. However, the shortest paths show a lower preference for neighbours with a rank of 3, which indicates that semantically closer may not mean graphically
+                    better performance.
+                  </p>
+                  <p>
+                    In other words, going into a street in Wiki City that is semantically more similar to the
+                    destination can help, perhaps there are other, counter-intuitive routes the traveller can take
+                    that actually take it faster to the destination. As the semantic closeness is not the whole
+                    story, we need to go a step further.
+                  </p>
+
+
+                  <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low simi
                     larity with destination</h3>
                   <p>
-                    If all the similarities between each neighbors with the destination is not so large, choose a
-                    nodes with larger degree may be a good strategy. So we plot the graph of the accumulated
-                    frequency of rank of chosen neighbor's degree, conditioning on low similarity with destina-
-                    tion. And we find that the Shortest path and human tends to choose the nodes with larger
-                    degree than GPT, this may be a point of improvement for prompt.
+                    While travellers stand at intersections and cannot find a direction semantically similar to
+                    the destination, it might be a good opportunity to go to a location that connects to more
+                    locations to have a better diversity of options.
+                  </p><p>
+                    Inspired by this, we plot the graph of the accumulated frequency of rank of the chosen
+                    neighbour's degree, conditioned on low similarity with the destination.
                  </p>
                  <div style="height: 500px;">
                   <iframe loading="lazy" data-src="./accumulated_distribution_of_rank_of_neighbors_conditioned_on_low_similiarity.html" style="   
@@ -373,9 +443,17 @@ choose from the following links: [neighbors].
                   transform: scale(0.8) translateX(21.5%);
                   overflow: hidden;"></iframe>
                  </div>
+                 <p>
+                  From the results, we find both the shortest path and humans tend to choose nodes with a
+                  larger degree than GPT. This may be a point of improvement to be included in the rulebook
+                  (prompt) for the traveller as a hint.
+                 </p>
                   <h3>First Step Choices in Relation to Step Lengths</h3>
+                  <p>Having explored the overall navigation strategy, let us now focus on the details of the initial
+                    steps of the journey, examining how the initial choices set the tone for the entire path forward.
+                  </p>
                   <p>
-                    We divided the paths into ”good” and ”bad” groups according to their lengths, and compared
+                    We divided the paths into "good" and "bad" groups according to their lengths, and compared
                     the closeness score and out-degrees for the first steps for different groups: 
                     <br>
                     <b>                    ai good, human good,
@@ -405,9 +483,8 @@ choose from the following links: [neighbors].
                       <li>Out Degrees comparison:</li>
                       <li>Closeness Scores comparison</li>
                     </ul>
-                
-                    AI have a much stronger tendency to choose articles with stronger semantic relation to the
-                    target.
+                    Also, AI tends to focus more on semantic meanings while humans select their
+                    first steps to have more out-degrees.
                   </p>
                   <div style="display: flex;">
                     <div style="height: 500px; width: 600px;">
@@ -452,8 +529,10 @@ choose from the following links: [neighbors].
 
       <div class="container">
         <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
-            <p style="margin: -30px 10% 30px; text-align: center;">Based on the findings above, we add some clues in the prompt and generate the paths again: The
-              following reasoning steps may be helpful:</p>
+            <p style="margin: -30px 10% 30px; text-align: center;">To test if our reasoning was correct, we adjusted the rulebook for our AI companion with the following
+              hints: 
+               <br>
+              The following reasoning steps may be helpful:</p>
         </div><!-- End Card Item -->
         <div class="row gy-4">
 
@@ -483,23 +562,139 @@ choose from the following links: [neighbors].
             <div class="container" data-aos="fade-up">
 
               <article class="article">
-
+                <div style="height: 500px; overflow-y: scroll;">
+                  <img src="assets/img/figures/improved_prompt.png" class="img-fluid" alt="">
+                </div>
 
                 <div class="content">
-                  <div style="height: 500px; overflow-y: scroll;">
-                    <img src="assets/img/figures/improved_prompt.png" class="img-fluid" alt="">
+               
+                  <p>We observed that on longer travels, this improved our GPT finding the destination, but not so much on shorter paths.</p>
+
+                  <p>The question of whether the prompt could be improved to enhance performance is interesting. However, manually distinguishing between GPT-generated paths and optimal paths, and subsequently refining the prompt, is a complex process. </p>
+                              
+                  <div class="faq-container" style="padding: 0 10%;">
+
+                    <div class="faq-item faq-active">
+                      <h3>Is there a way to automatically improve the prompt? </h3>
+                      <div class="faq-content">
+                                  
+                      <p><b>TextGrad</b> is a framework that enables automatic "differentiation" via text and can be applied to prompt optimization by designing an appropriate loss function. However, the approach we previously used to generate paths is not well-suited for TextGrad. One challenge is defining the "ground truth," as there are often multiple shortest-length paths. Even if a ground truth path is decided, it can be difficult for GPT-4o to generate effective feedback. This is because the optimal path might deviate significantly from the generated path, making it hard to provide feedback on the correctness of each step.</p>
+                      
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div><!-- End Faq item-->
+      
+                    <div class="faq-item">
+                      <h3>How can we improve the prompt to provide more precise feedback?</h3>
+                      <div class="faq-content">
+                        <p>To address this, we redefined the task for GPT. The input now consists of a pair: [current article] and [target article],
+                           along with the available links [neighbors]. GPT is tasked with outputting its [choice]—the next article it prefers to select—and [reason]—an explanation for its choice. This redefinition 
+                           allows GPT-4o to provide more precise feedback. We define [all possible first steps in optimal paths] as the ground truth. If the model selects any article from this set, it is considered 
+                           a correct solution. For training, we sample a pair from the graph and extract the neighbors as training data.
+                           <br>
+                        With this setup, the average path length is directly reduced and more stable compared to before, this is probably because the [reason] part ask model for explanation. Then we tuned the prompt, for clarity, let's refer to GPT-4o Mini as the "student" and GPT-4o as the "teacher."</p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div><!-- End Faq item-->
+      
+                    <div class="faq-item">
+                      <h3>Okay, it's time to equip our AI challenger with the new prompt! </h3>
+                      <div class="faq-content">
+                        <div>
+                          <p><strong>The initial prompt is:</strong></p>
+                  
+                          <p>You are an expert in navigating articles. Your goal is to find the path as short as possible from the start article to the target article by selecting the provided links. Each time you will be given (current article, destination) pair and the next article that you could choose.</p>
+                          
+                          <p>Your output should include:</p>
+                          <ul>
+                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
+                            <li>"Reason: " followed by the reason why you chose that article.</li>
+                          </ul>
+                          
+                          <p><strong>For the task, the student receives:</strong></p>
+                          
+                          <p>You are currently at the article "Chlorine". The target article is "Brisbane". The links you can choose from are: Argon, Atom, Bacteria, Berlin, Bromine, Calcium, Chemical_element, Color, Dead_Sea, Drinking_water, Electron, Fluorine, Food, Gas, Human, Hydrochloric_acid, Hydrogen, List_of_elements_by_name, Magnetism, Medicine, Mercury_(element), Neon, Neutron, Nuclear_weapon, Ocean, Oxygen, Ozone, Periodic_table, Petroleum, Phase_(matter), Proton, Salt, Seawater, Sodium_hydroxide, Soil, Sulfur, Textile, Titanium, Water, Water_purification, World_War_I.</p>
+                          
+                          <p><strong>Then the student provides the choice:</strong></p>
+                          
+                          <p><strong>Choice:</strong> "Water"<br>
+                          <strong>Reason:</strong> The article "Water" is a crucial element in understanding various geographical and environmental contexts, including those related to Brisbane, which is a city in Australia known for its river and proximity to water bodies. Additionally, water is essential for life and is a common theme in discussions about cities, their development, and their ecosystems. By navigating to "Water," I can potentially find connections to articles related to Brisbane's geography, climate, and urban planning, which may lead to the target article more efficiently. Other options, such as "Chemical_element" or "Periodic_table," while relevant to the topic of chlorine, do not have a direct connection to the geographical context of Brisbane.</p>
+                          
+                          <p><strong>Then, teacher provides feedback (loss):</strong></p>
+                          
+                          <p><strong>Feedback:</strong> The choice of "Water" is not optimal as it is not among the first steps in the shortest paths to "Brisbane." While the reasoning about water's relevance to geographical and environmental contexts is valid, it does not directly lead to the target article efficiently. Instead, consider choosing "Ocean" or "Drinking_water," which are more directly related to geographical and environmental contexts and are part of the optimal choices. These articles are more likely to have connections to Brisbane due to their relevance to water bodies and urban water systems, which are significant aspects of Brisbane's geography.</p>
+                          
+                          <p>Even when the student provides the correct answer, the teacher could provide some suggestions on the reasoning.</p>
+                          
+                          <p>After several rounds, the final prompt got:</p>
+                          
+                          <p>You are an expert in navigating articles with the goal of finding the shortest path from the start article to the target article by selecting the provided links. Your expertise involves understanding thematic, historical, geographical, cultural, economic, and social connections. Each time you will be given a (current article, destination) pair and the list of next articles you could choose from.</p>
+                          
+                          <p>Your output should include:</p>
+                          <ul>
+                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
+                            <li>"Reason: " followed by a specific and well-reasoned justification for your choice, considering direct connections and potential pathways to the target.</li>
+                          </ul>
+                          
+                          <p>Consider multiple potential paths and evaluate their merits before making a choice. Use the information provided and avoid relying on assumptions or external knowledge not present in the task. Reflect on your choices and learn from any mistakes to improve your navigation strategy. Emphasize the importance of minimizing steps and prioritize links that are part of the shortest path. Incorporate feedback from past decisions to refine your strategy and ensure efficient navigation.</p>
+                          
+                          <p>To enhance your decision-making:</p>
+                          <ul>
+                            <li>Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.</li>
+                            <li>Evaluate potential links hierarchically, starting with the most specific and direct connections.</li>
+                            <li>Balance thematic relevance with chronological proximity when considering potential links.</li>
+                            <li>Hypothesize multiple potential paths and evaluate their likelihood of success using a structured decision-making framework.</li>
+                            <li>Continuously refine your strategy based on feedback and past experiences.</li>
+                            <li>Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.</li>
+                            <li>Test hypotheses about potential paths and adjust your strategy based on the outcomes.</li>
+                          </ul>
+                          
+                          <p>By following these guidelines, you will improve your ability to select the most efficient path to the target article.</p>
+                          
+                          <p>Cool, the updated prompt includes practical suggestions and some are just similar to ours improvement such as 'Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.', 'Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.'.</p>
+                          
+                         
+                        </div>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div><!-- End Faq item-->
+      
+                    <div class="faq-item">
+                      <h3>Did the new prompt improve the performance of GPT?</h3>
+                      <div class="faq-content">
+                        <div class="container" data-aos="fade-up" >
+                          <div class="row gx-0">
+            
+                          <div class="col-lg-10">
+                            <p>Unfortunately, the generated path length didn't improve a lot using this prompt.</p>
+                          
+                            <p>A possible reason is that the student cannot understand the teacher's reasoning. How about let the GPT-4o mini teach itself?</p>
+                            
+                            <p>It got even worse.</p>
+                          </div>
+                          <div class="col-lg-2">
+                            <img src="assets/img/marvin.gif" width="280px" class="img-fluid" data-aos="fade-up">
+            
+                          </div>
+            
+                          
+                          <p>The core reason for GPT's failure to find the optimal path is that semantic similarity does not necessarily imply proximity in the graph structure. This issue applies to humans as well. Our experiments and GPT's responses show that both GPT and humans tend to rely on similar reasoning processes for navigation in the articles. Unfortunately, these processes are fundamentally not optimal for this task.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div><!-- End Faq item-->
+      
                   </div>
-                  <p>
-                    We found in the pairs whose paths used to be longer, the new prompt improved the results, whereas
-                      on other shorter paths it does not affect a lot.
-                  </p>
+
+               
+   
 
                 </div><!-- End post content -->
 
-
               </article>
-
             </div>
+
           </section><!-- /Blog Details Section -->
 
         </div>
@@ -509,6 +704,43 @@ choose from the following links: [neighbors].
     </section><!-- /Values Section -->
 
     <!-- Stats Section -->
+    <section id="conclusion" class="about section">
+
+      <div class="container" data-aos="fade-up">
+        <div class="row gx-0">
+
+          <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content">
+              <h2>Conclusion</h2>
+              <p>
+                As you can see, traveller, you are not obsolete yet. The scary AI is still not much better than tested
+                human intuition. In fact, you are both quite bad compared to the optimal shortest paths. Since the
+                GPT-4o mini is based on data generated by humans, it tries to mimic the suboptimal human reasoning.
+                Both humans and AI try to follow a path to the destination in Wiki City where each new street or
+                intersection is semantically closer to the target article. But the shortest path can only be reached by
+                choosing locations not only based on semantic similarity - something AI in particular is focusing a lot
+                on.              
+              </p>
+              <p>
+                Analysis of previous results suggests that a more 
+                effective strategy, particularly for the first step, 
+                is to choose intersections that connect to a larger 
+                number of destinations, even if they aren't semantically 
+                similar to the target. Further research is needed to 
+                develop an optimal GPS for Wiki City - 
+                the city of knowledge."
+              </p>  
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img  style=" border-radius: 10px;"src="assets/img/race.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /About Section -->
 
 
   </main>
