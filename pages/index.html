@@ -584,7 +584,7 @@ patterns of humans
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
       
-                    <div class="faq-item">
+                    <div class="faq-item faq-active">
                       <h3>How can we improve the prompt to provide more precise feedback?</h3>
                       <div class="faq-content">
                         <p>To address this, we redefined the task for GPT. The input now consists of a pair: [current article] and [target article],
@@ -597,64 +597,13 @@ patterns of humans
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
       
-                    <div class="faq-item">
+                    <div class="faq-item faq-active">
                       <h3>Okay, it's time to equip our AI challenger with the new prompt! </h3>
                       <div class="faq-content">
-                        <div>
-                          <p><strong>The initial prompt is:</strong></p>
-                  
-                          <p>You are an expert in navigating articles. Your goal is to find the path as short as possible from the start article to the target article by selecting the provided links. Each time you will be given (current article, destination) pair and the next article that you could choose.</p>
-                          
-                          <p>Your output should include:</p>
-                          <ul>
-                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
-                            <li>"Reason: " followed by the reason why you chose that article.</li>
-                          </ul>
-                          
-                          <p><strong>For the task, the student receives:</strong></p>
-                          
-                          <p>You are currently at the article "Chlorine". The target article is "Brisbane". The links you can choose from are: Argon, Atom, Bacteria, Berlin, Bromine, Calcium, Chemical_element, Color, Dead_Sea, Drinking_water, Electron, Fluorine, Food, Gas, Human, Hydrochloric_acid, Hydrogen, List_of_elements_by_name, Magnetism, Medicine, Mercury_(element), Neon, Neutron, Nuclear_weapon, Ocean, Oxygen, Ozone, Periodic_table, Petroleum, Phase_(matter), Proton, Salt, Seawater, Sodium_hydroxide, Soil, Sulfur, Textile, Titanium, Water, Water_purification, World_War_I.</p>
-                          
-                          <p><strong>Then the student provides the choice:</strong></p>
-                          
-                          <p><strong>Choice:</strong> "Water"<br>
-                          <strong>Reason:</strong> The article "Water" is a crucial element in understanding various geographical and environmental contexts, including those related to Brisbane, which is a city in Australia known for its river and proximity to water bodies. Additionally, water is essential for life and is a common theme in discussions about cities, their development, and their ecosystems. By navigating to "Water," I can potentially find connections to articles related to Brisbane's geography, climate, and urban planning, which may lead to the target article more efficiently. Other options, such as "Chemical_element" or "Periodic_table," while relevant to the topic of chlorine, do not have a direct connection to the geographical context of Brisbane.</p>
-                          
-                          <p><strong>Then, teacher provides feedback (loss):</strong></p>
-                          
-                          <p><strong>Feedback:</strong> The choice of "Water" is not optimal as it is not among the first steps in the shortest paths to "Brisbane." While the reasoning about water's relevance to geographical and environmental contexts is valid, it does not directly lead to the target article efficiently. Instead, consider choosing "Ocean" or "Drinking_water," which are more directly related to geographical and environmental contexts and are part of the optimal choices. These articles are more likely to have connections to Brisbane due to their relevance to water bodies and urban water systems, which are significant aspects of Brisbane's geography.</p>
-                          
-                          <p>Even when the student provides the correct answer, the teacher could provide some suggestions on the reasoning.</p>
-                          
-                          <p>After several rounds, the final prompt got:</p>
-                          
-                          <p>You are an expert in navigating articles with the goal of finding the shortest path from the start article to the target article by selecting the provided links. Your expertise involves understanding thematic, historical, geographical, cultural, economic, and social connections. Each time you will be given a (current article, destination) pair and the list of next articles you could choose from.</p>
-                          
-                          <p>Your output should include:</p>
-                          <ul>
-                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
-                            <li>"Reason: " followed by a specific and well-reasoned justification for your choice, considering direct connections and potential pathways to the target.</li>
-                          </ul>
-                          
-                          <p>Consider multiple potential paths and evaluate their merits before making a choice. Use the information provided and avoid relying on assumptions or external knowledge not present in the task. Reflect on your choices and learn from any mistakes to improve your navigation strategy. Emphasize the importance of minimizing steps and prioritize links that are part of the shortest path. Incorporate feedback from past decisions to refine your strategy and ensure efficient navigation.</p>
-                          
-                          <p>To enhance your decision-making:</p>
-                          <ul>
-                            <li>Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.</li>
-                            <li>Evaluate potential links hierarchically, starting with the most specific and direct connections.</li>
-                            <li>Balance thematic relevance with chronological proximity when considering potential links.</li>
-                            <li>Hypothesize multiple potential paths and evaluate their likelihood of success using a structured decision-making framework.</li>
-                            <li>Continuously refine your strategy based on feedback and past experiences.</li>
-                            <li>Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.</li>
-                            <li>Test hypotheses about potential paths and adjust your strategy based on the outcomes.</li>
-                          </ul>
-                          
-                          <p>By following these guidelines, you will improve your ability to select the most efficient path to the target article.</p>
-                          
-                          <p>Cool, the updated prompt includes practical suggestions and some are just similar to ours improvement such as 'Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.', 'Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.'.</p>
-                          
-                         
-                        </div>
+                        <iframe loading="lazy" data-src="chat.html" style="   
+                        width: 100%;
+                        height: 500px;
+                        overflow: hidden;"></iframe>
                       </div>
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
