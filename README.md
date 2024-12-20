@@ -77,9 +77,9 @@ This project compares the abilities of humans and GPT to find paths in Wikispeed
 - Mert Yuksekgonul, Federico Bianchi, Joseph Boen, Sheng Liu, Zhi Huang, Carlos Guestrin, and James Zou. "TextGrad: Automatic 'Differentiation' via Text." arXiv preprint arXiv:2406.07496, 2024. [https://arxiv.org/abs/2406.07496](https://arxiv.org/abs/2406.07496)
 
 ### Contribution
-- Yexiang Cheng: Preliminary data analysis, GPT paths generation, paths comparation, prompt optimization using textgrad and analysis, result explaination.
-- Rongxiao Qu: Problem formulation, preliminary data analysis, paths comparation, plotting graphs during analysis, result explaination.
+- Yexiang Cheng: Preliminary data analysis, GPT paths generation, paths comparison, prompt optimization using textgrad and analysis, result explaination.
+- Rongxiao Qu: Problem formulation, preliminary data analysis, paths comparison, plotting graphs during analysis, result explaination.
 - Zhengping Qiao: Preliminary data analysis, designing and development the data-story webpage, also contributed to the story content.
 - Tian Jing: Writing up the proposal and the data story.
-- Zhiyao Yan: Preliminary data analysis, human vs. GPT comparative analysis.
+- Zhiyao Yan: Preliminary data analysis, paths comparison, integrate webpage and results report.
 
