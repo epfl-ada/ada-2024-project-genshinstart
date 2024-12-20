@@ -102,15 +102,22 @@
                     <div class="content">
                         <h2>Welcome to Wiki City!</h2>
                         <p>
-                            Welcome to Wiki City, a metropolis of knowledge where navigating through ideas can feel like
-                            exploring a maze. Humans often rely on intuition and personal experience to find their way,
-                            but could an AI companion, like a Large Language Model (LLM), chart a faster, more efficient
-                            path? </p>
+                            Greetings traveler! Welcome to 'Wiki City', a metropolis built from knowledge. Each block is 
+                            a Wikipedia article, and the roads connecting them are hyperlinks. And each intersection is 
+                            a place where different domains meet and spark new insights. Imagine for example going from 
+                            the science district to the artist's area, while seeing signs pointing to the history village. </p>
                         <p>
-                            To explore this, we turn to a game called Wikispeedia. Players start at one Wikipedia
-                            article and attempt to reach a target article, moving only through hyperlinks. By comparing
-                            how humans and LLMs navigate under these constraints, we aim to discover who performs better
-                            and learn how to enhance AI companions.
+                            But even with signs, travellers like you find it difficult to navigate this city of ideas far 
+                            from home. Humans generally rely on intuition and personal experiences to choose their path. 
+                            However, today more and more people believe an AI companion can be a suitable tool to help them. 
+                            So, how would a Large Language Model (LLM) find a quick, efficient route through this maze of 
+                            knowledge?</p>
+                        <p>
+                            To see whether AI can more effectively identify the shorter paths we turn to a game called 
+                            Wikispeedia: players start at one article and attempt to reach the target via links found 
+                            along the way. By comparing how humans and LLMs navigate Wiki City under these constraints, 
+                            we hope to discover: 1. What are the differences between AI, human, and optimal paths and 
+                            strategies? ; 2. Can we improve the prompt to get better results?
 
                         </p>
 
@@ -178,8 +185,8 @@
                                 <p>
                                     The content of the rulebook is in the following. In order to prevent GPT from taking
                                     advantage of its prior knowledge on Wikipedia, we did not directly include any
-                                    information related to Wikipedia during the race (Although in controlled trials it
-                                    had little effects).</p>
+                                    information related to Wikipedia during the race (Although our controlled trials 
+                                    showed it wouldn't make so much difference).</p>
                             </div>
                         </div>
 
@@ -290,7 +297,7 @@
                         <p>
                             Equipped with these instructions, our GPT-4o mini now has to take on the challenge and find
                             the target article while navigating the maze of knowledge that is Wiki City. To make our
-                            conclusions more confident, our AI companion has to repeat navigation for <b>5 times</b> for
+                            conclusions more confident, our AI companion has to repeat navigation <b>5 times</b> for
                             each of the 159 pairs.
                         </p>
                         <p>
@@ -378,13 +385,13 @@
                                     backtracking) to measure how far the traveller (human or AI) will walk until they
                                     arrive at their destination.
                                 <p>
-                                    The average path length for ai, human, and shortest paths are 6.2, 6.7, and 3.70
-                                    respectively. Our AI companion was indeed faster than humans on several topics， but
+                                    The average path length for ai, human, and shortest paths are 6.2, 6.7, and 3.7
+                                    respectively. Our AI companion was indeed faster than humans on several topics, but
                                     on some others, it took a much longer path.
                                 </p>
                                 <p>
                                     What are the reasons that lead to these differences? Are there potential approaches
-                                    to improve our AI to find shorter paths based on our analysis.
+                                    to improve our AI to find shorter paths based on our analysis?
                                 </p>
                                 <div style="height: 980px;">
                                     <iframe loading="lazy" data-src="path_length_comparison.html" style="
@@ -398,10 +405,12 @@
 
                                 <h3>Closeness score distribution</h3>
                                 <p>
-                                    To gain more details, we next considered a measure that evaluates how each step
-                                    advances towards the destination in a semantic space. Semantic here means how close
-                                    the neighbour- hood where the traveller is now is compared to the final destination
-                                    in Wiki City.
+                                    To gain more details, we next considered a measure that evaluates how each step advances 
+                                    towards the destination in a semantic space. Here, we define closeness to be the semantic 
+                                    distance between two nodes. The Closeness Score for a pair of nodes in a path is the 
+                                    difference in the semantic distance towards the destination between the next node and 
+                                    the current node. A higher closeness score will indicate a greater step towards the 
+                                    destination in semantic meaning.
                                 </p>
                                 <p>
                                     For each transition (current node, next node, destination) the score is given by the
@@ -455,7 +464,7 @@
                                     more detailed analysis will provide more clues to answer these questions.
                                 </p>
 
-                                <h3>First Step Can Make a Difference</h3>
+                                <h3>First Steps Can Make a Difference</h3>
                                 <p>
                                     Therefore, as the saying goes "A good beginning is half done", and in the maze-like
                                     streets of Wiki City, an initial choice maybe can profoundly influence the entire
@@ -467,26 +476,21 @@
                                 <p>
                                     We divide the paths into "good" and "bad" groups according to their lengths and set
                                     the median length as the cutting threshold. We compare the closeness score and
-                                    out-degrees for the first steps for different groups:
+                                    out-degrees for the first steps of every paths for different groups:
                                     <b>
                                         ai good, human good, optimal, ai bad, human bad.
                                     </b>
                                 </p>
                                 <ul>
-                                    <li><b>AI Good Paths:</b> Shorter or equal to the average AI path length; stores
-                                        node degrees and closeness scores.
+                                    <li><b>AI Good Paths:</b> Shorter or equal to the median AI path length
                                     </li>
-                                    <li><b>AI Bad Paths:</b> Longer than the average AI path length; stores node degrees
-                                        and closeness scores.
+                                    <li><b>AI Bad Paths:</b> Longer than the median AI path length
                                     </li>
-                                    <li><b>Human Good Paths:</b> Shorter or equal to the average human path length;
-                                        stores node degrees and closeness scores.
+                                    <li><b>Human Good Paths:</b> Shorter or equal to the median human path length
                                     </li>
-                                    <li><b>Human Bad Paths:</b> Longer than the average human path length
-                                        ; stores node degrees and closeness scores.
+                                    <li><b>Human Bad Paths:</b> Longer than the median human path length
                                     </li>
-                                    <li><b>Optimal Paths:</b> Shortest paths used as a benchmark; stores node degrees
-                                        and closeness scores.
+                                    <li><b>Optimal Paths:</b> Shortest paths used as a benchmark
                                     </li>
                                 </ul>
                                 <div style="display: flex;">
@@ -528,7 +532,17 @@
                                 </p>
 
                                 <h3>Getting Deeper into Semantic Proximity</h3>
-                                <p>   After examining how initial choices affect the entire journey through the alleys of Wiki City, we go further into the semantic relationships for the choices made by humans and AI. Without so much knowledge of the graph, semantic meanings are definitely one of the few clues that one could rely on to make the navigation. We enlarge our observations, measuring every steps' and every neighbouring nodes' semantic distance to the target. For each node, we rank their neighbors according to their semantic distance to the destination. It turned out that for all the groups, nearly half of the choices are made to select the semantically optimal choice among their neighbors. Again, the shortest paths have the strongest tendency for this result. Also, AI beat humans in this semantic measurement: a greater proportion of selections are made on the rank 1 neighbor than the others, although the proportion for selecting the top 5 neighbors both slightly exceeded 60%</p>
+                                <p>   After examining how initial choices affect the entire journey through the alleys of 
+                                    Wiki City, we go further into the semantic relationships for the choices made by humans
+                                     and AI. Without so much knowledge of the graph, semantic meaning is definitely one of 
+                                     the few clues that one could rely on to make the navigation. We enlarge our observations,
+                                      measuring every step's and every neighboring nodes' semantic distance to the target. 
+                                      For each node, we rank their neighbors according to their semantic distance to the 
+                                      destination. It turned out that for all the groups, nearly half of the choices are made
+                                       to select the semantically optimal choice among their neighbors. Again, the shortest 
+                                       paths have the strongest tendency for this result. Also, AI beat humans in this semantic
+                                        measurement: a greater proportion of selections are made on the rank 1 neighbor than 
+                                        the others, although the proportion for selecting the top 5 neighbors both slightly exceeded 60%. </p>
 
                                 <div style="text-align: center;">
                                     <img src="./assets/img/figures/node_selection_by_semantic_proximity.png"
@@ -564,18 +578,17 @@
                                 </p> -->
 
 
-                                <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low similarity with destination</h3>
+                                <h3>What If All Nodes Are Far Away? </h3>
                                 <p>
-                                    While travellers stand at intersections and cannot find a direction semantically
-                                    similar to
-                                    the destination, it might be a good opportunity to go to a location that connects to
-                                    more
-                                    locations to have a better diversity of options.
+                                    Until now, we have shown that both the out-degrees and semantic distance to the target are significant 
+                                    factors in making good navigation. But what are their relationships? What if there doesn't exist a 
+                                    neighbour that is semantically "close" to the target?
                                 </p>
                                 <p>
-                                    Inspired by this, we plot the graph of the accumulated frequency of rank of the
-                                    chosen
-                                    neighbour's degree, conditioned on low similarity with the destination.
+                                    Here, we considered the selections of nodes based on the out-degrees under the condition that all 
+                                    neighbours have low similarity with the destination. For nodes whose neighbours all present similarity 
+                                    scores less than 0.30 with the destination, we ranked these neighbours by out-degree and counted the 
+                                    accumulated frequencies versus the ranking. 
                                 </p>
                                 <div style="height: 600px;">
                                     <iframe loading="lazy"
@@ -588,30 +601,16 @@
                   overflow: hidden;"></iframe>
                                 </div>
                                 <p>
-                                    Until now, we have shown that both the out-degrees and semantic distance to the
-                                    target are significant
-                                    factors to make a good navigation decision. But what are their relationships? What
-                                    if there doesn’t exist a
-                                    neighbor that is semantically ”close” to the target?
+                                    Although the top five selections are similar across all three groups, the shortest paths begin to 
+                                    show a distinct advantage as we move further down the ranking.  Almost 70% of nodes on shortest 
+                                    paths select their top 10 neighbours in the out-degrees when there are no semantically "good" choices, 
+                                    while humans and AI have only 50%. 
                                 </p>
                                 <p>
-                                    Here, we considered the selections of nodes based on the out-degrees under the condition that all neighbours have low similarity with the destination. For nodes whose neighbours all present similarity scores less than 0.30 with the destination, we ranked these neighbours by out-degree and counted the accumulated frequencies versus the ranking. Although the top five selections are similar across all three groups, the shortest paths begin to show a distinct advantage as we move further down the ranking.  Almost 70\% of nodes on shortest paths select their top 10 neighbours in the out-degrees when there are no semantically "good" choices, while humans and AI have only 50\%. AI and humans perform roughly the same for the top 13 neighbours, but humans rarely choose neighbours ranked beyond 20. We attribute this phenomenon to the fact that nodes with fewer out-degrees are generally less common concepts. Due to differences in vocabulary and knowledge, humans are less familiar with those choices and therefore tend to avoid them.
-                                </p>
-                                <p>
-                                    Almost 70% of nodes on shortest paths
-                                    will select top 10 neighbors in the out-degrees when there is no semantically ”good”
-                                    choices, while
-                                    humans and AI have only 50%.
-
-                                </p>
-                                <p>
-                                    AI and humans perform roughly the same for the top 13 neighbors,
-                                    but humans rarely choose neighbors ranked beyond 20. We attribute this phenomenon to
-                                    the fact
-                                    that nodes with less out-degrees are generally less common concepts, and due to the
-                                    vocabulary and
-                                    knowledge differences, humans are less familiar with those choices and therefore not
-                                    selecting them.
+                                    AI and humans perform roughly the same for the top 13 neighbours, but humans rarely choose neighbours 
+                                    ranked beyond 20. We attribute this phenomenon to the fact that nodes with fewer out-degrees are 
+                                    generally less common concepts. Due to differences in vocabulary and knowledge, humans are less 
+                                    familiar with those choices and therefore tend to avoid them.
                                 </p>
                             </div><!-- End post content -->
 
