@@ -10,3 +10,4 @@ seaborn==0.13.2
 sentence_transformers==3.3.0
 torch==2.4.1
 openai==1.54.4
+textgrad
