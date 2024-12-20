@@ -1,13 +1,11 @@
-# Readme
-
-## Project Who's the Better Navigator? A Race Through Wikipedia City: Humans vs GPT
+# Who's the Better Navigator? A Race Through Wikipedia City: Humans vs GPT
 
 ### Data Story: https://epfl-ada.github.io/ada-2024-project-genshinstart/
 ### Introduction
 
 **Abstract:**
 
-The project aims to explore and compare the strategies of humans and GPT in the Wikispeedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We will investigate the difference of human navigation paths and GPT navigation paths LLMs and there strategy. Besides, by comparing with optimal paths, we will try to improve the prompt for better performance.
+The project aims to explore and compare the strategies of humans and GPT in the Wikispeedia game. The goal of the game is to find the shortest paths between two Wikipedia articles. We investigated the difference of human navigation paths and GPT navigation paths and there strategy. Besides, by comparing with optimal paths, we tried to improve the prompt for better performance through extracting the features of better paths, and through prompt optimization by applying [textgrad](https://arxiv.org/abs/2406.07496).
 
 **Motivation:**
 
@@ -15,49 +13,64 @@ With the rapid development of LLMs, its application scenarios have become more e
 
 **Research Question:**
 
-What are the differences between AI, human and optimal paths?
-What are the differences between AI and human strategies?
+What are the differences between AI, human and optimal paths and strategies?  
 Could we improve the prompt to get better results?
 
 ### Implement: 
 
-**Pipeline**:
-
-The research process follows this workflow:
-
-![image-pipline](img/pipline.png)
-
 **Database:**
 
-We will only use the database - wikispeedia that has been provided and based on this, we will extract the human navigation paths in the dataset. And we will also use the API to collect batch browsing data of the LLMs. With the combination, we will use the new dataset to analyse and evaluate. 
+We used wikispeedia that has been provided and based on this, we extracted the human navigation paths in the dataset. Besides, we generated paths for 159 most frequent (start article, destination) pairs in human navigation paths using GPT 4o-mini, which can be downloaded from https://drive.google.com/file/d/19cHamrMGMWwMOOKIl_zdv7Opp29B_gbG/view?usp=drive_link, to see more details related to these generated paths, please visit our website.
+This file contains
+- paths: The paths generated using baseline prompt.
+- paths_improved_prompt: The paths generated using manually improved prompt.
+- paths_before_tuning: The paths generated under modified task.
+- paths_after_tuning: The paths generated using prompt tuned by GPT-4o.
+- paths_after_tuning_4o_mini: The paths generated using prompt tuned by GPT-4o mini.
 
 **Method/Metrics**
 
-0. Preprocessing and Pre-analysis: Perform initial data cleaning and initial data visualization.
-1. After balancing cost and performancee, we choose to apply gpt 4o-mini to generate the navigation path made by LLM. Then in the experiment, we will try different prompts, to analysis its impact on the output, like whether there is bias (such as introducing prior knowledge, etc.), and finally choose one to generate the AI navigation paths dataset, with the same distribution of <origin, destination> pairs as human navigation paths dataset. 
-2. Graph construction: the articles and the links between them can be naturally structured as digraphs.
-3. To measure the difference between the navigation paths made by human and LLM, we could focus on: (i) The statistic of the path, such as the average path length, the most frequently accessed node and its feature, the difference between decisions made by human and LLM like the title level distribution and the title position distribution. (ii) The metrics to measure how closer each move made to the destination, such as the distance change to the destination, or the embedding change which is detailed in 4.
-4. If we map each node in the graph into a vector, then we can get a measure of the distance between two nodes, which can be on the graph scale and semantic scale. (i) Graph embedding: by applying Node2Vec, this embedding contains the structural information related to graph. (ii) Semantic embedding: by applying SentenceTransformer, we could turn each node(title) into vector, which contains the semantic information to the document. Once the embedding is got, the distance between two nodes can be implemented as Euclidean distance or cosine similarity, then the efficiency or semantic interpretability for each move can be measured.
+1. Path generation: after balancing cost and performance, we choose to apply gpt 4o-mini to generate the navigation path. To see more details about the GPT and prompt settings, please visit our website.
+2. Metrics to measure difference between paths: 
+- The statistic of the path, such as the average path length. 
+- The semantic efficiency for each movement: we introduced clossness score, which is the difference between distance to destination before and after one movement. The distance here is cosine similarity between sentences embeddings of article titles, which reflects semantic distance between articles.
+- Out degree of chosen article: This could reflect the 'potential' for a chosen article. We also analysed neighbor preference condition on all the neighbors has low semantic similarities with the destination, to get insight for better strategy.
+3. Prompt improvement: 
+- Manually improvement: Based on the discovery above, we provide some hints for the GPT-4o mini model, and the generated paths actually get improved.
+- Prompt optimization based on textgrad: We redefined the task for applying the textgrad pipeline, generate training samples and get prediction from GPT-4o mini model, then use feedback provided by GPT-4o to improve the prompt.
 
+**File Description**
+
+| File/Directory Name         | Description                                                                 |
+| --------------------------- | --------------------------------------------------------------------------- |
+| `data/`                     | Directory containing the raw and processed data files.                      |
+| `src/`                      | Directory containing the source code for the project.                       |
+| `comparison.ipynb`          | The main results for our project. |
+| `generate.py`          | Script for generating navigation paths using GPT-4o mini, under the initial task. |
+| `textgrad.ipynb`          | Prompt optimization using textgrad. |
+| `README.md`                 | This README file.                                                           |
+
+Because generating the paths using GPT costs money, we didn't include and rerun it in comparison.ipynb. To generate the paths under the initial task, you can use generate.py, and for the prompt optimization process, you can see textgrad.ipynb. Alternatively, you can simply download the generated paths from this link https://drive.google.com/file/d/19cHamrMGMWwMOOKIl_zdv7Opp29B_gbG/view?usp=drive_link or ./data/ folder, then you can run all the analysis in comparison.ipynb based on these files
+
+**Install the dependency**
+```bash
+pip install -r requirements.txt
+```
 
 **Tool**
 
 Python
 
-OpenAI:Chatgpt 4o-mini
+OpenAI:GPT-4o and GPT-4o mini
 
-**Timeline**
-
-| Date                 | Content                             |
-| :------------------- | ----------------------------------- |
-| Now - Nov.15th       | Data preprocessing and pre-analysis |
-| Nov.16 - Nov.24th    | LLM dataset generation              |
-| Nov.25th -  Dec.8th  | Processing and analysis             |
-| Dec.9th - Dec.15th   | Evaluation, comparison and report   |
-| Dec.16th - Dec.20th  | Final Check and Supplement          |
+[textgrad](https://arxiv.org/abs/2406.07496)
+       
 
 ### Conclusion
 
-This project compares the abilities of humans and GPT to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. 
+This project compares the abilities of humans and GPT to find paths in Wikispeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. We also tried prompt optimization based on TextGrad, which could potentially be generalized to solve search problems using LLMs.
 
+### Contribution
+- Yexiang Cheng: Preliminary data analysis, GPT paths generation, Paths comparation, Prompt optimization using textgrad and analysis, Result explaination.
+- Zhengping Qiao: Initial data analysis, designing and development the data-story webpage, also contributed to the story content.
 
