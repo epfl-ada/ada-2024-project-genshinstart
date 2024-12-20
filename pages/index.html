@@ -154,7 +154,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <!-- <h2>setting</h2> -->
-            <p>GPT settings<br></p>
+            <p style="font-size: 4em;">GPT settings<br></p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -277,7 +277,7 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up" style="padding: 0;">
-            <p>Humans vs GPT</p>
+            <p style="font-size: 4em;">Humans vs GPT</p>
         </div><!-- End Section Title -->
         <div class="container">
             <div class="row gx-5">
@@ -630,7 +630,7 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <p>Improvements of Prompt<br></p>
+            <p style="font-size: 4em;">Improvements of Prompt<br></p>
             <!-- <h2>Our Values</h2> -->
         </div><!-- End Section Title -->
 
@@ -677,7 +677,7 @@
 
                             <div class="content">
 
-                                <div class="table-container">
+                                <div class="table-container" style="text-align: center;">
                                     <div class="caption">Comparison of Path Metrics: Baselline vs Manually Improved
                                         Prompt
                                     </div>
@@ -692,19 +692,25 @@
                                         <tbody>
                                         <tr>
                                             <td class="metric-column">Number of Shorter Paths</td>
-                                            <td>34</td>
-                                            <td>70</td>
+                                            <td>33</td>
+                                            <td>69</td>
                                         </tr>
                                         <tr>
                                             <td class="metric-column">Average Path Length</td>
-                                            <td>6.2036</td>
-                                            <td>5.7992</td>
+                                            <td>6.2151</td>
+                                            <td>5.8055 <span class="note">(**)</span></td>
                                         </tr>
                                         <tr>
                                             <td class="metric-column">Median Path Length</td>
                                             <td>5.2</td>
                                             <td>5.2</td>
                                         </tr>
+                                        <tr>
+                                            <td class="metric-column">Average Difference with Shortest Path</td>
+                                            <td>2.5144</td>
+                                            <td>2.1049 <span class="note">(**)</span></td>
+                                        </tr>
+                                        </tbody>
                                         </tbody>
                                     </table>
                                 </div>
@@ -759,7 +765,7 @@
                                                 which leads to a more accurate inference. But this modification also
                                                 leads to some failure cases, because sometimes GPT selects infeasible
                                                 nodes, and we can't correct them like before.</p>
-                                            <div class="table-container">
+                                            <div class="table-container" style="text-align: center;">
                                                 <div class="caption">Comparison of Path Metrics: Original Task vs
                                                     Modified task
                                                 </div>
@@ -768,29 +774,34 @@
                                                     <tr>
                                                         <th>Metric</th>
                                                         <th>Original task</th>
-                                                        <th>Path 2: Modified task</th>
+                                                        <th>Modified task</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tr>
                                                         <td class="metric-column">Failure Rate</td>
                                                         <td>0.0</td>
-                                                        <td>0.0692</td>
+                                                        <td>0.0701</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="metric-column">Number of Shorter Paths</td>
-                                                        <td>41</td>
-                                                        <td>67</td>
+                                                        <td>40</td>
+                                                        <td>66</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="metric-column">Average Path Length</td>
-                                                        <td>6.1028</td>
-                                                        <td>5.6824</td>
+                                                        <td>6.1138</td>
+                                                        <td>5.6986 <span class="note">(ns)</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="metric-column">Median Path Length</td>
                                                         <td>5.2</td>
                                                         <td>5.0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="metric-column">Average Difference with Shortest Path</td>
+                                                        <td>2.4083</td>
+                                                        <td>1.9932 <span class="note">(ns)</span></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -952,11 +963,11 @@
                                     </div>
                                     <p>Cool, the updated prompt includes
                                         practical suggestions and some are just
-                                        similar to ours improvement such as 'Avoid common pitfalls such as
+                                        similar to ours improvement such as "Avoid common pitfalls such as
                                         over-reliance on broad thematic links or assumptions not supported by
-                                        the provided data.', 'Prioritize links with direct connections to the
+                                        the provided data". "Prioritize links with direct connections to the
                                         target article, especially those that are chronologically or
-                                        geographically adjacent.'</p>
+                                        geographically adjacent".</p>
                                     <div class="faq-item  faq-active">
                                         <h3>Did the new prompt improve the performance of GPT?</h3>
                                         <iframe loading="lazy"
@@ -973,7 +984,7 @@
 
 
                                                     <div class="col-lg-12">
-                                                        <div class="table-container">
+                                                        <div class="table-container" style="text-align: center;">
                                                             <div class="caption">Comparison of Path Metrics: Before
                                                                 Tuning vs. GPT-4o Tuning
                                                             </div>
@@ -988,19 +999,19 @@
                                                                 <tbody>
                                                                 <tr>
                                                                     <td class="metric-column">Failure Rate</td>
-                                                                    <td>0.0692</td>
-                                                                    <td>0.0818</td>
+                                                                    <td>0.0701</td>
+                                                                    <td>0.0828</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Number of Shorter Paths
                                                                     </td>
-                                                                    <td>33</td>
+                                                                    <td>31</td>
                                                                     <td>31</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Average Path Length</td>
-                                                                    <td>5.6312</td>
-                                                                    <td>5.6667 <span class="note">(ns)</span></td>
+                                                                    <td>5.6475</td>
+                                                                    <td>5.6619 <span class="note">(ns)</span></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Median Path Length</td>
@@ -1011,8 +1022,8 @@
                                                                     <td class="metric-column">Average Difference with
                                                                         Shortest Path
                                                                     </td>
-                                                                    <td>1.9149</td>
-                                                                    <td>1.9504 <span class="note">(ns)</span></td>
+                                                                    <td>1.9353</td>
+                                                                    <td>1.9496 <span class="note">(ns)</span></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -1032,7 +1043,7 @@
                                                                  style="margin-left: 30px; border-radius: 10px; width: 200px;"
                                                                  class="img-fluid">
                                                         </div>
-                                                        <div class="table-container">
+                                                        <div class="table-container" style="text-align: center;">
                                                             <div class="caption">Comparison of Path Metrics: Before
                                                                 Tuning vs. GPT-4o Mini Tuning
                                                             </div>
@@ -1047,19 +1058,19 @@
                                                                 <tbody>
                                                                 <tr>
                                                                     <td class="metric-column">Failure Rate</td>
-                                                                    <td>0.0692</td>
-                                                                    <td>0.0503</td>
+                                                                    <td>0.0701</td>
+                                                                    <td>0.0510</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Number of Shorter Paths
                                                                     </td>
-                                                                    <td>49</td>
+                                                                    <td>47</td>
                                                                     <td>22</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Average Path Length</td>
-                                                                    <td>5.5874</td>
-                                                                    <td>5.9301 <span class="note">(ns)</span></td>
+                                                                    <td>5.6028</td>
+                                                                    <td>5.9291 <span class="note">(ns)</span></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="metric-column">Median Path Length</td>
@@ -1070,8 +1081,8 @@
                                                                     <td class="metric-column">Average Difference with
                                                                         Shortest Path
                                                                     </td>
-                                                                    <td>1.8741</td>
-                                                                    <td>2.2168 <span class="note">(ns)</span></td>
+                                                                    <td>1.8936</td>
+                                                                    <td>2.2199 <span class="note">(ns)</span></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -1136,13 +1147,11 @@
                             on.
                         </p>
                         <p>
-                            Analysis of previous results suggests that a more
-                            effective strategy, particularly for the first step,
-                            is to choose intersections that connect to a larger
-                            number of destinations, even if they aren't semantically
-                            similar to the target. Further research is needed to
-                            develop an optimal GPS for Wiki City -
-                            the city of knowledge."
+                            Even if the AI is equipped with the ability to "self-optimize", 
+                            and gain some non-semantic inspiration, it can hardly 
+                            reach the optimal path. Overall, the structural characteristics 
+                            make it difficult to conclude how to make a perfect GPS for the 
+                            city of knowledge, Wiki City.
                         </p>
                     </div>
                 </div>
