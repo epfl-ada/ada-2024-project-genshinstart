@@ -4,6 +4,7 @@ from scipy.spatial.distance import cosine
 import pandas as pd
 import random
 import plotly.graph_objects as go
+from scipy.stats import ttest_rel
 
 def calculate_shortest_path_length(path, shortest_path_matrix):
     articles = path.split(';')
@@ -291,13 +292,15 @@ def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddin
     
     return rank_of_degrees
 
-def paths_comparation(paths_1, paths_2, ori_dest):
+def paths_comparation(paths_1, paths_2, shortest_path, ori_dest):
     failure_1 = 0
     failure_2 = 0
     shorter_1 = 0
     shorter_2 = 0
     paths_length_1 = []
     paths_length_2 = []
+    difference_with_shortest_1 = []
+    difference_with_shortest_2 = []
 
     for pair in ori_dest:
         start_article, target_article = pair
@@ -329,6 +332,8 @@ def paths_comparation(paths_1, paths_2, ori_dest):
         
         paths_length_1.append(avg_path_length_1)
         paths_length_2.append(avg_path_length_2)
+        difference_with_shortest_1.append(avg_path_length_1 - len(shortest_path[pair][0]))
+        difference_with_shortest_2.append(avg_path_length_2 - len(shortest_path[pair][0]))
 
         
     print(f'Failure rate for Paths 1: {failure_1/len(ori_dest)}, Path 2: {failure_2/len(ori_dest)}')
@@ -339,3 +344,13 @@ def paths_comparation(paths_1, paths_2, ori_dest):
     paths_length_2 = [length for length in paths_length_2 if length != 'No path found']
     print(f'Average for Path 1: {np.mean(paths_length_1)}, Path 2: {np.mean(paths_length_2)}')
     print(f'Median path length for Path 1: {np.median(paths_length_1)}, Path 2: {np.median(paths_length_2)}')
+    # t test
+    t_stat, p_value = ttest_rel(paths_length_1, paths_length_2)
+    print(f'T test result: t_stat={t_stat}, p_value={p_value}')
+
+    # calculate the statistics of the difference with the shortest path
+    print(f'Average difference with the shortest path for Path 1: {np.mean(difference_with_shortest_1)}, Path 2: {np.mean(difference_with_shortest_2)}')
+
+    # t test
+    t_stat, p_value = ttest_rel(difference_with_shortest_1, difference_with_shortest_2)
+    print(f'T test result: t_stat={t_stat}, p_value={p_value}')
