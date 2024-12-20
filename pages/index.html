@@ -712,39 +712,52 @@ patterns of humans
                         For clarity, let’s refer to GPT-4o Mini as the ”student” and GPT-4o
                         as the ”teacher.”
                         </p><p>
-                        The initial prompt is:
-                      </p><p>
-                        You are an expert in navigating articles. Your goal is to find the path as short as possible from the
-                        start article to the target article by selecting the provided links. Each time you will be given (current
-                        article, destination) pair and the the next article that you could choose.
-                      </p><p>
-                        Your output should include: ”Choice: ” followed by the title of the article you want to navigate
-                        to. ”Reason: ” followed by the reason why you chose that article.
-                      </p>
-                        <p>Consider multiple potential paths and evaluate their merits before making a choice. Use the information provided and avoid relying on assumptions or external knowledge not present in the task. Reflect on your choices and learn from any mistakes to improve your navigation strategy. Emphasize the importance of minimizing steps and prioritize links that are part of the shortest path. Incorporate feedback from past decisions to refine your strategy and ensure efficient navigation.</p>
-                        
-                        <p>To enhance your decision-making:</p>
-                        
-                        <ul>
-                          <li>Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.</li>
-                          
-                          <li>Evaluate potential links hierarchically, starting with the most specific and direct connections.</li>
-                          
-                          <li>Balance thematic relevance with chronological proximity when considering potential links.</li>
-                          
-                          <li>Hypothesize multiple potential paths and evaluate their likelihood of success using a structured decision-making framework.</li>
-                          
-                          <li>Continuously refine your strategy based on feedback and past experiences.</li>
-                          
-                          <li>Avoid common pitfalls such as overreliance on broad thematic links or assumptions not supported by the provided data.</li>
-                          
-                          <li>Test hypotheses about potential paths and adjust your strategy based on the outcomes.</li>
-                        </ul>
-                        
-                        <p>By following these guidelines, you will improve your ability to select the most efficient path to the target article.</p>
-
-                        <p>Cool, the updated prompt includes practical suggestions and some are just similar to ours improvement such as 'Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.', 'Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.'.</p>
-                        
+                        <div style="padding: 20px;">
+                          <details style="margin-bottom: 20px;">
+                              <summary style="
+                                  cursor: pointer;
+                                  padding: 10px;
+                                  background-color: #f5f5f5;
+                                  border: 1px solid #ddd;
+                                  border-radius: 4px;
+                                  outline: none;
+                                  font-size: 16px;
+                                  color: #333;">
+                                  The initial prompt is:
+                                  <p style="display: inline; color:#555;"> click to expand</p>
+                              </summary>
+                              
+                              <div style="
+                                  padding: 20px;
+                                  border: 1px solid #e0e0e0;
+                                  border-radius: 4px;
+                                  background-color: #f9f9f9;
+                                  margin-top: 10px;">
+                                  
+                                  <p>You are an expert in navigating articles. Your goal is to find the path as short as possible from the start article to the target article by selecting the provided links. Each time you will be given (current article, destination) pair and the the next article that you could choose.</p>
+                                  
+                                  <p>Your output should include: "Choice: " followed by the title of the article you want to navigate to. "Reason: " followed by the reason why you chose that article.</p>
+                                  
+                                  <p>Consider multiple potential paths and evaluate their merits before making a choice. Use the information provided and avoid relying on assumptions or external knowledge not present in the task. Reflect on your choices and learn from any mistakes to improve your navigation strategy. Emphasize the importance of minimizing steps and prioritize links that are part of the shortest path. Incorporate feedback from past decisions to refine your strategy and ensure efficient navigation.</p>
+                                  
+                                  <p>To enhance your decision-making:</p>
+                                  
+                                  <ul style="padding-left: 20px; margin: 15px 0;">
+                                      <li style="margin-bottom: 10px;">Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.</li>
+                                      <li style="margin-bottom: 10px;">Evaluate potential links hierarchically, starting with the most specific and direct connections.</li>
+                                      <li style="margin-bottom: 10px;">Balance thematic relevance with chronological proximity when considering potential links.</li>
+                                      <li style="margin-bottom: 10px;">Hypothesize multiple potential paths and evaluate their likelihood of success using a structured decision-making framework.</li>
+                                      <li style="margin-bottom: 10px;">Continuously refine your strategy based on feedback and past experiences.</li>
+                                      <li style="margin-bottom: 10px;">Avoid common pitfalls such as overreliance on broad thematic links or assumptions not supported by the provided data.</li>
+                                      <li style="margin-bottom: 10px;">Test hypotheses about potential paths and adjust your strategy based on the outcomes.</li>
+                                  </ul>
+                                  
+                                  <p>By following these guidelines, you will improve your ability to select the most efficient path to the target article.</p>
+                                  
+                                </div>
+                              </details>
+                            </div>
+                            <p>Cool, the updated prompt includes practical suggestions and some are just similar to ours improvement such as 'Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.', 'Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.'</p>
                         <div class="faq-content">
                         <iframe loading="lazy" data-src="chat.html" style="   
                         width: 100%;
