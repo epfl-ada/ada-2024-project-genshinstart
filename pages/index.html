@@ -288,12 +288,13 @@
                         </p>
 
                         <p>
-                            Equipped with these herculean tasks, our GPT-4o mini now has to take on the challenge and
-                            find
-                            the target article while navigating the maze of knowledge that is Wiki City. To be sure that
-                            it is
-                            actually good, our AI companion has to do this <b>5 times</b> for each of the 159 pairs.
-                            While this may sound expensive, generating such a dataset is only <b>0.8 dollars.</b>
+                            Equipped with these instructions, our GPT-4o mini now has to take on the challenge and find
+                            the target article while navigating the maze of knowledge that is Wiki City. To make our
+                            conclusions more confident, our AI companion has to repeat navigation for <b>5 times</b> for
+                            each of the 159 pairs.
+                        </p>
+                        <p>
+                            While this may sound expensive, generating such a dataset is only <b>0.8</b> dollars.
                         </p>
                     </div>
                 </div>
@@ -377,9 +378,9 @@
                                     backtracking) to measure how far the traveller (human or AI) will walk until they
                                     arrive at their destination.
                                 <p>
-                                    The average path length for ai, human, and shortest paths are 6.22, 6.65, and 3.70
-                                    respectively. Our mighty AI companion was indeed faster than humans on several
-                                    topics but on others it took a much longer path instead.
+                                    The average path length for ai, human, and shortest paths are 6.2, 6.7, and 3.70
+                                    respectively. Our AI companion was indeed faster than humans on several topics， but
+                                    on some others, it took a much longer path.
                                 </p>
                                 <p>
                                     What are the reasons that lead to these differences? Are there potential approaches
@@ -439,22 +440,22 @@
                                     0 - 0.1 (closeness score).
                                 </p>
                                 <p>
-                                    This differs heavily from the ideal distribution where another high peak of density
-                                    is
-                                    observed around a closeness score of 0.75.
+                                    This differs heavily from the shortest path distribution where another high peak of
+                                    density is observed around a closeness score of 0.75.
                                 </p>
                                 <p>
-                                    This seems to suggest that humans and GPT share the same strategy: semantically
-                                    approach the destination gradually, whereas the optimal path can find
-                                    the "key step" to quickly reach the destination.
+                                    This seems to suggest that
+                                    humans and GPT share the same strategy: semantically approach the destination
+                                    gradually, whereas the optimal path can find the "key step" to quickly reach the
+                                    destination.
                                 </p>
                                 <p>
-                                    So, is there really no big difference between human and AI solutions? What
+                                    However, is there really no big difference between human and AI solutions? What
                                     advantages do shortest paths have that distinguish them from human and AI paths? Our
                                     more detailed analysis will provide more clues to answer these questions.
                                 </p>
 
-                                <h3>First Step Choices in Relation to Step Lengths</h3>
+                                <h3>First Step Can Make a Difference</h3>
                                 <p>
                                     Therefore, as the saying goes "A good beginning is half done", and in the maze-like
                                     streets of Wiki City, an initial choice maybe can profoundly influence the entire
@@ -509,7 +510,7 @@
                                 </div>
                                 <p>
                                     The results show that compared to longer paths, shorter paths for all groups have
-                                    these features in common:
+                                    these features for the first-step decisions in common:
                                 </p>
                                 <ol>
                                     <li><b>Articles with much stronger semantic relations to the target</b></li>
@@ -859,67 +860,21 @@
                                                             find the path as short as possible from the start article to
                                                             the target article by selecting the provided links. Each
                                                             time you will be given (current article, destination) pair
-                                                            and the the next article that you could choose.</p>
+                                                            and the the next article that you could choose.
+                                                        </p>
 
-                                                        <p>Your output should include: "Choice: " followed by the title
-                                                            of the article you want to navigate to. "Reason: " followed
-                                                            by the reason why you chose that article.</p>
+                                                        <p>Your output should include:
+                                                        </p>
 
-                                                        <p>Consider multiple potential paths and evaluate their merits
-                                                            before making a choice. Use the information provided and
-                                                            avoid relying on assumptions or external knowledge not
-                                                            present in the task. Reflect on your choices and learn from
-                                                            any mistakes to improve your navigation strategy. Emphasize
-                                                            the importance of minimizing steps and prioritize links that
-                                                            are part of the shortest path. Incorporate feedback from
-                                                            past decisions to refine your strategy and ensure efficient
-                                                            navigation.</p>
+                                                        <p>"Choice: " followed by the title of the article you want to
+                                                            navigate to.
+                                                        </p>
 
-                                                        <p>To enhance your decision-making:</p>
-
-                                                        <ul style="padding-left: 20px; margin: 15px 0;">
-                                                            <li style="margin-bottom: 10px;">Prioritize links with
-                                                                direct connections to the target article, especially
-                                                                those that are chronologically or geographically
-                                                                adjacent.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Evaluate potential links
-                                                                hierarchically, starting with the most specific and
-                                                                direct connections.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Balance thematic relevance
-                                                                with chronological proximity when considering potential
-                                                                links.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Hypothesize multiple
-                                                                potential paths and evaluate their likelihood of success
-                                                                using a structured decision-making framework.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Continuously refine your
-                                                                strategy based on feedback and past experiences.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Avoid common pitfalls such
-                                                                as overreliance on broad thematic links or assumptions
-                                                                not supported by the provided data.
-                                                            </li>
-                                                            <li style="margin-bottom: 10px;">Test hypotheses about
-                                                                potential paths and adjust your strategy based on the
-                                                                outcomes.
-                                                            </li>
-                                                        </ul>
-
-                                                        <p>By following these guidelines, you will improve your ability
-                                                            to select the most efficient path to the target article.</p>
-
+                                                        <p>"Reason: " followed by the reason why you chose that
+                                                            article.</p>
                                                     </div>
                                                 </details>
                                             </div>
-                                            <p>Cool, the updated prompt includes practical suggestions and some are just
-                                                similar to ours improvement such as 'Avoid common pitfalls such as
-                                                over-reliance on broad thematic links or assumptions not supported by
-                                                the provided data.', 'Prioritize links with direct connections to the
-                                                target article, especially those that are chronologically or
-                                                geographically adjacent.'</p>
                                             <div class="faq-content">
                                                 <iframe loading="lazy" data-src="chat.html" style="
                         width: 100%;
@@ -930,10 +885,109 @@
                                         </div>
                                         <i class="faq-toggle bi bi-chevron-right"></i>
                                     </div><!-- End Faq item-->
+                                    <br>
+                                    <p>
+                                        Even when the student provide the correct answer, the teacher could provide some
+                                        suggestions on the reasoning.
+                                    </p>
+                                    <p><b>After several rounds:</b></p>
+                                    <div style="padding: 20px;">
+                                        <details style="margin-bottom: 20px;">
+                                            <summary style="
+                                  cursor: pointer;
+                                  padding: 10px;
+                                  background-color: #f5f5f5;
+                                  border: 1px solid #ddd;
+                                  border-radius: 4px;
+                                  outline: none;
+                                  font-size: 16px;
+                                  color: #333;">
+                                                The final prompt got:
+                                                <p style="display: inline; color:#555;"> click to expand</p>
+                                            </summary>
 
+                                            <div style="
+                                  padding: 20px;
+                                  border: 1px solid #e0e0e0;
+                                  border-radius: 4px;
+                                  background-color: #f9f9f9;
+                                  margin-top: 10px;">
+
+                                                <p>You are an expert in navigating articles with the goal of finding the
+                                                    shortest path from the start article to the target article by
+                                                    selecting the provided links. Your expertise involves understanding
+                                                    thematic, historical, geographical, cultural, economic, and social
+                                                    connections. Each time you will be given a (current article,
+                                                    destination) pair and the list of next articles you could choose
+                                                    from.
+
+
+                                                </p>
+
+                                                <p>Your output should include:
+
+                                                </p>
+
+                                                <p>- "Choice: " followed by the title of the article you want to
+                                                    navigate to.
+
+                                                </p>
+
+                                                <p>- "Reason: " followed by a specific and well-reasoned justification
+                                                    for your choice, considering direct connections and potential
+                                                    pathways to the target.
+                                                </p>
+                                                <p>Consider multiple potential paths and evaluate their merits before
+                                                    making a choice. Use the information provided and avoid relying on
+                                                    assumptions or external knowledge not present in the task. Reflect
+                                                    on your choices and learn from any mistakes to improve your
+                                                    navigation strategy. Emphasize the importance of minimizing steps
+                                                    and prioritize links that are part of the shortest path. Incorporate
+                                                    feedback from past decisions to refine your strategy and ensure
+                                                    efficient navigation.
+
+                                                </p>
+                                                <p>To enhance your decision-making:
+                                                </p>
+                                                <p>- Prioritize links with direct connections to the target article,
+                                                    especially those that are chronologically or geographically
+                                                    adjacent.
+                                                </p>
+                                                <p>- Evaluate potential links hierarchically, starting with the most
+                                                    specific and direct connections.
+                                                </p>
+                                                <p>- Balance thematic relevance with chronological proximity when
+                                                    considering potential links.
+                                                </p>
+                                                <p>- Hypothesize multiple potential paths and evaluate their likelihood
+                                                    of success using a structured decision-making framework.
+                                                </p>
+                                                <p>- Continuously refine your strategy based on feedback and past
+                                                    experiences.
+                                                </p>
+                                                <p>- Avoid common pitfalls such as over-reliance on broad thematic links
+                                                    or assumptions not supported by the provided data.
+                                                </p>
+                                                <p>- Test hypotheses about potential paths and adjust your strategy
+                                                    based on the outcomes.
+                                                </p>
+                                                <p>By following these guidelines, you will improve your ability to
+                                                    select the most efficient.</p>
+                                            </div>
+                                        </details>
+                                    </div>
+                                    <p>Cool, the updated prompt includes
+                                        practical suggestions and some are just
+                                        similar to ours improvement such as 'Avoid common pitfalls such as
+                                        over-reliance on broad thematic links or assumptions not supported by
+                                        the provided data.', 'Prioritize links with direct connections to the
+                                        target article, especially those that are chronologically or
+                                        geographically adjacent.'</p>
                                     <div class="faq-item  faq-active">
                                         <h3>Did the new prompt improve the performance of GPT?</h3>
-                                        <iframe loading="lazy" data-src="path_length_comparison_for_before_and_after_improvement_paths.html" style="
+                                        <iframe loading="lazy"
+                                                data-src="path_length_comparison_for_before_and_after_improvement_paths.html"
+                                                style="
                                         width: 1433px;
                                         height: 650px;
                                         transform-origin: top left;
@@ -1051,7 +1105,8 @@
                                                         <p>It got even worse.</p>
                                                     </div>
 
-                                                    <img src="./assets/img/figures/correlation_between_embedding_and_distance.png" style="width: 600px; margin: 0 auto;">
+                                                    <img src="./assets/img/figures/correlation_between_embedding_and_distance.png"
+                                                         style="width: 600px; margin: 0 auto;">
                                                     <p>The core reason for GPT's failure to find the optimal path is
                                                         that semantic similarity does not necessarily imply proximity in
                                                         the graph structure. The embedding level distance is not
