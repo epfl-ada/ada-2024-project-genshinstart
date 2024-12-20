@@ -594,14 +594,14 @@
                                     chosen
                                     neighbour's degree, conditioned on low similarity with the destination.
                                 </p>
-                                <div style="height: 500px;">
+                                <div style="height: 600px;">
                                     <iframe loading="lazy"
                                             data-src="./accumulated_distribution_of_rank_of_neighbors_conditioned_on_low_similiarity.html"
                                             style="
                   width: 1433px;
                   height: 1170px;
                   transform-origin: top left;
-                  transform: scale(0.8) translateX(21.5%);
+                  transform: scale(0.7) translateX(25%);
                   overflow: hidden;"></iframe>
                                 </div>
                                 <p>
@@ -933,7 +933,13 @@
 
                                     <div class="faq-item  faq-active">
                                         <h3>Did the new prompt improve the performance of GPT?</h3>
-                                        <div class="faq-content">
+                                        <iframe loading="lazy" data-src="path_length_comparison_for_before_and_after_improvement_paths.html" style="
+                                        width: 1433px;
+                                        height: 650px;
+                                        transform-origin: top left;
+                                        transform: scale(0.69);
+                                        "></iframe>
+                                        <div class="faq-content" style="margin-top: -180px;">
                                             <div class="container" data-aos="fade-up">
                                                 <div class="row gx-0">
 
@@ -1045,7 +1051,7 @@
                                                         <p>It got even worse.</p>
                                                     </div>
 
-
+                                                    <img src="./assets/img/figures/correlation_between_embedding_and_distance.png" style="width: 600px; margin: 0 auto;">
                                                     <p>The core reason for GPT's failure to find the optimal path is
                                                         that semantic similarity does not necessarily imply proximity in
                                                         the graph structure. The embedding level distance is not
