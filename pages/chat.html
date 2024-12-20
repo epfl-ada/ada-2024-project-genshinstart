@@ -130,15 +130,15 @@
 </head>
 <body>
     <div class="chat-container">
-        <div class="message teacher right">
+        <div class="message student left">
             <div class="avatar-container">
                 <div class="avatar">T</div>
-                <div class="avatar-label">Teacher</div>
+                <div class="avatar-label">Task</div>
             </div>
             <div class="message-content" onclick="toggleContent('task')">
-                <div class="message-header">Task Description</div>
-                <div class="preview-text">You are currently at the article "Chlorine". The target article is "Brisbane"...</div>
-                <div class="message-body" id="task">
+                <!-- <div class="message-header">Task Description</div> -->
+                <!-- <div class="preview-text show">You are currently at the article "Chlorine". The target article is "Brisbane"...</div> -->
+                <div class="message-body show" id="task">
                     You are currently at the article "Chlorine". The target article is "Brisbane".<br><br>
                     The links you can choose from:<br>
                     <div class="links">
@@ -185,7 +185,6 @@
                         <span class="link">World_War_I</span>
                     </div>
                 </div>
-                <div class="more-hint">click to see the details...</div>
             </div>
         </div>
 
@@ -195,13 +194,12 @@
                 <div class="avatar-label">Student</div>
             </div>
             <div class="message-content" onclick="toggleContent('student')">
-                <div class="message-header">Choice & Reason</div>
-                <div class="preview-text">Choice: "Water"</div>
-                <div class="message-body" id="student">
+                <!-- <div class="message-header">Choice & Reason</div> -->
+                <!-- <div class="preview-text show">Choice: "Water"</div> -->
+                <div class="message-body show" id="student">
                     <strong>Choice:</strong> "Water"<br><br>
                     <strong>Reason:</strong> The article "Water" is a crucial element in understanding various geographical and environmental contexts, including those related to Brisbane, which is a city in Australia known for its river and proximity to water bodies. Additionally, water is essential for life and is a common theme in discussions about cities, their development, and their ecosystems. By navigating to "Water," I can potentially find connections to articles related to Brisbane's geography, climate, and urban planning, which may lead to the target article more efficiently. Other options, such as "Chemical_element" or "Periodic_table," while relevant to the topic of chlorine, do not have a direct connection to the geographical context of Brisbane.
                 </div>
-                <div class="more-hint">click to see the details...</div>
             </div>
         </div>
 
@@ -212,32 +210,15 @@
             </div>
             <div class="message-content" onclick="toggleContent('teacher')">
                 <div class="message-header">Feedback(loss)</div>
-                <div class="preview-text">The choice of "Water" is not optimal...</div>
-                <div class="message-body" id="teacher">
+                <!-- <div class="preview-text show">The choice of "Water" is not optimal...</div> -->
+                <div class="message-body show" id="teacher">
                     Feedback: The choice of "Water" is not optimal as it is not among the first steps in the shortest paths to "Brisbane." While the reasoning about water's relevance to geographical and environmental contexts is valid, it does not directly lead to the target article efficiently. Instead, consider choosing "Ocean" or "Drinking_water," which are more directly related to geographical and environmental contexts and are part of the optimal choices. These articles are more likely to have connections to Brisbane due to their relevance to water bodies and urban water systems, which are significant aspects of Brisbane's geography.                </div>
-                <div class="more-hint">click to see the details...</div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleContent(id) {
-            const content = document.getElementById(id);
-            const messageContent = content.parentElement;
-            const preview = messageContent.querySelector('.preview-text');
-            const moreHint = messageContent.querySelector('.more-hint');
-            
-            content.classList.toggle('show');
-            
-            // 当展开时，隐藏预览文本和 more 提示
-            if (content.classList.contains('show')) {
-                preview.style.display = 'none';
-                moreHint.style.display = 'none';
-            } else {
-                preview.style.display = 'block';
-                moreHint.style.display = 'block';
-            }
-        }
+ 
     </script>
 </body>
 </html>
