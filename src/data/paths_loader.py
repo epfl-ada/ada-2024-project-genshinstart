@@ -3,6 +3,16 @@ import csv
 import pandas as pd
 
 def load_ai_paths(folder, ori_dest):
+    '''
+    Load the AI generated paths
+    Parameters:
+    - folder: str, the folder path
+    - ori_dest: list, the original and destination pair
+
+    Returns:
+    - ai_paths: dict, the AI generated paths for each pair
+    '''
+
     ai_paths = {}
     for pair in ori_dest:
         start_article, target_article = pair
@@ -15,6 +25,14 @@ def load_ai_paths(folder, ori_dest):
     return ai_paths
 
 def load_human_paths(ori_dest):
+    '''
+    Load the human generated paths
+    Parameters:
+    - ori_dest: list, the original and destination pair
+
+    Returns:
+    - human_paths: dict, the human generated paths for each pair
+    '''
     human_paths = {}
     paths_df = pd.read_csv("data/wikispeedia_paths-and-graph/paths_finished.tsv", sep="\t", comment='#', header=None,
                        names=["hashedIpAddress", "timestamp", "durationInSec", "path", "rating"])

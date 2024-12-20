@@ -4,6 +4,7 @@ from scipy.spatial.distance import cosine
 import pandas as pd
 import random
 import plotly.graph_objects as go
+from scipy.stats import ttest_rel
 
 def calculate_shortest_path_length(path, shortest_path_matrix):
     articles = path.split(';')
@@ -17,6 +18,15 @@ def calculate_shortest_path_length(path, shortest_path_matrix):
     return 0
 
 def get_shortest_path(G, ori_dest):
+    '''
+    Get the shortest path for each pair of (start article, target article)
+    Parameters:
+    - G: nx.DiGraph, the graph
+    - ori_dest: list, the list of (start article, target article) pairs
+
+    Returns:
+    - shortest_paths: dict, the shortest paths
+    '''
     shortest_paths = {}
     for pair in ori_dest:
         start_article, target_article = pair
@@ -28,11 +38,31 @@ def get_shortest_path(G, ori_dest):
     return shortest_paths
 
 def embedding_distance(node1, node2, embeddings):
+    '''
+    Calculate the cosine distance between two nodes
+    Parameters:
+    - node1: str, the first node
+    - node2: str, the second node
+    - embeddings: dict, the embeddings
+    
+    Returns:
+    - float, the cosine distance of the two nodes
+    '''
     if node1 not in embeddings or node2 not in embeddings:
         return np.nan  
     return cosine(embeddings[node1], embeddings[node2])
 
 def calculate_closeness_scores(path, embeddings):
+    '''
+    Calculate the closeness scores for each move in the path
+    The closeness score is the difference between the previous move's distance and the current move's distance to the destination
+    Parameters:
+    - path: str, the path
+    - embeddings: dict, the embeddings
+
+    Returns:
+    - closeness_scores: list, the closeness scores for each move
+    '''
     articles = path
     destination = articles[-1]  
     closeness_scores = []
@@ -64,7 +94,18 @@ def calculate_closeness_scores(path, embeddings):
     return closeness_scores
 
 def rank_neighbors(previous_node, current_node, destination, graph, embeddings):
-    # rank the neighbors including the previous node of the current node based on the distance to the destination
+    '''
+    Rank the neighbors of the current node based on the distance to the destination
+    Parameters:
+    - previous_node: str, the previous node
+    - current_node: str, the current node
+    - destination: str, the destination node
+    - graph: nx.Graph, the graph
+    - embeddings: dict, the embeddings
+    
+    Returns:
+    - sorted_neighbors: list, the sorted neighbors of the current node
+    '''
     neighbors = list(graph.successors(current_node))
     if previous_node is not None and previous_node not in neighbors:
         neighbors.append(previous_node)
@@ -73,6 +114,16 @@ def rank_neighbors(previous_node, current_node, destination, graph, embeddings):
     return sorted_neighbors
 
 def calculate_rank_of_neighbors(path, graph, embeddings):
+    '''
+    Calculate the rank of the chosen nodes in the neighbors of the previous node for each move in the path
+    Parameters:
+    - path: str, the path
+    - graph: nx.Graph, the graph
+    - embeddings: dict, the embeddings
+    
+    Returns:
+    - ranks: list, the ranks of the chosen nodes
+    '''
     articles = path
     destination = articles[-1]  
     ranks = []
@@ -84,6 +135,8 @@ def calculate_rank_of_neighbors(path, graph, embeddings):
         if prev_node not in graph.nodes:
             print(f"Node {prev_node} is not in the graph")
             return []
+        
+        # Get the neighbors of the previous node and rank them based on the distance to the destination
         if nodes_stack.__len__() == 0:
             neighbors = rank_neighbors(None, prev_node, destination, graph, embeddings)
         else:
@@ -257,7 +310,17 @@ def compute_path_degrees(paths, degrees):
     return paths_degrees
 
 def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddings, threshold=0.30):
-    # Calculate the rank of degree of chosen nodes if the similarity with the destination is low
+    '''
+    Calculate the rank of the chosen nodes in the neighbors of the previous node for each move in the path, conditioned on low similarity with the destination
+    Parameters:
+    - path: str, the path
+    - graph: nx.Graph, the graph
+    - embeddings: dict, the embeddings
+    - threshold: float, the threshold for low similarity
+    
+    Returns:
+    - rank_of_degrees: list, the ranks of the chosen neighbors for each move
+    '''
     articles = path
     destination = articles[-1]
     rank_of_degrees = []
@@ -291,13 +354,29 @@ def calculate_degree_condition_on_low_similarity_with_dest(path, graph, embeddin
     
     return rank_of_degrees
 
-def paths_comparation(paths_1, paths_2, ori_dest):
+def paths_comparation(paths_1, paths_2, shortest_path, ori_dest):
+    '''
+    Compare the two paths and calculate the statistics
+    Parameters:
+    - paths_1: dict, the paths for the first method
+    - paths_2: dict, the paths for the second method
+    - shortest_path: dict, the shortest paths
+    - ori_dest: list, the list of (start article, target article) pairs
+
+    Returns:
+    - None
+
+    Output:
+    - Print the statistics
+    '''
     failure_1 = 0
     failure_2 = 0
     shorter_1 = 0
     shorter_2 = 0
     paths_length_1 = []
     paths_length_2 = []
+    difference_with_shortest_1 = []
+    difference_with_shortest_2 = []
 
     for pair in ori_dest:
         start_article, target_article = pair
@@ -329,6 +408,8 @@ def paths_comparation(paths_1, paths_2, ori_dest):
         
         paths_length_1.append(avg_path_length_1)
         paths_length_2.append(avg_path_length_2)
+        difference_with_shortest_1.append(avg_path_length_1 - len(shortest_path[pair][0]))
+        difference_with_shortest_2.append(avg_path_length_2 - len(shortest_path[pair][0]))
 
         
     print(f'Failure rate for Paths 1: {failure_1/len(ori_dest)}, Path 2: {failure_2/len(ori_dest)}')
@@ -339,3 +420,13 @@ def paths_comparation(paths_1, paths_2, ori_dest):
     paths_length_2 = [length for length in paths_length_2 if length != 'No path found']
     print(f'Average for Path 1: {np.mean(paths_length_1)}, Path 2: {np.mean(paths_length_2)}')
     print(f'Median path length for Path 1: {np.median(paths_length_1)}, Path 2: {np.median(paths_length_2)}')
+    # t test
+    t_stat, p_value = ttest_rel(paths_length_1, paths_length_2)
+    print(f'T test result: t_stat={t_stat}, p_value={p_value}')
+
+    # calculate the statistics of the difference with the shortest path
+    print(f'Average difference with the shortest path for Path 1: {np.mean(difference_with_shortest_1)}, Path 2: {np.mean(difference_with_shortest_2)}')
+
+    # t test
+    t_stat, p_value = ttest_rel(difference_with_shortest_1, difference_with_shortest_2)
+    print(f'T test result: t_stat={t_stat}, p_value={p_value}')
