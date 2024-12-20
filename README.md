@@ -15,16 +15,10 @@ With the rapid development of LLMs, its application scenarios have become more e
 
 **Research Question:**
 
-What are the differences between AI, human and optimal paths and strategies? 
+What are the differences between AI, human and optimal paths and strategies?  
 Could we improve the prompt to get better results?
 
 ### Implement: 
-
-**Pipeline**:
-
-The research process follows this workflow:
-
-![image-pipline](img/pipline.png)
 
 **Database:**
 
