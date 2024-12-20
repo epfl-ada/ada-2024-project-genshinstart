@@ -74,4 +74,5 @@ This project compares the abilities of humans and GPT to find paths in Wikispeed
 - Yexiang Cheng: Preliminary data analysis, GPT paths generation, Paths comparation, Prompt optimization using textgrad and analysis, Result explaination.
 - Zhengping Qiao: Initial data analysis, designing and development the data-story webpage, also contributed to the story content.
 - Tian Jing: Writing up the proposal and the data story.
+- Zhiyao Yan: Initial data analysis, human vs. GPT comparative analysis.
 
