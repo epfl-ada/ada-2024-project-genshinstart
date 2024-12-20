@@ -9,6 +9,26 @@ import pandas as pd
 
 
 def plot_updated_task_path_length_comparison(before_tuning_paths, after_4o_tuning_paths, after_4o_mini_tuning_paths, ori_dest, shortest_paths, sample_fraction=0.15, fixed_height_per_pair=50, fixed_width=1400, x_jitter_offset=0.025, seed=58, y_offset=0.15):
+    '''
+    Plot the path length comparison for before and after improvement paths
+    Parameters:
+    - before_tuning_paths: dict, the paths before tuning
+    - after_4o_tuning_paths: dict, the paths after 4o tuning
+    - after_4o_mini_tuning_paths: dict, the paths after 4o mini tuning
+    - ori_dest: list, the original and destination pair
+    - shortest_paths: dict, the shortest paths
+    - sample_fraction: float, the sample fraction
+    - fixed_height_per_pair: int, the fixed height per pair
+    - fixed_width: int, the fixed width
+    - x_jitter_offset: float, the x jitter offset
+    - seed: int, the random seed
+    - y_offset: float, the y offset
+
+    Returns:
+    - None
+    '''
+    
+    # Extract path lengths for each pair
     before_tuning_path_lens = []
     after_4o_path_lens = []
     after_4o_mini_path_lens = []
@@ -31,7 +51,8 @@ def plot_updated_task_path_length_comparison(before_tuning_paths, after_4o_tunin
             after_4o_mini_path_lens.append(after_4o_mini_path_len)
             shortest_path_lens.append([len(path_shortest[0])])
             success_pairs.append(pair)
-        
+    
+    # Sort the pairs based on the mean path length before tuning, to better visualize the comparison
     mean_before_tuning_path_len = [np.mean(lengths) for lengths in before_tuning_path_lens]
     sorted_indices = np.argsort(mean_before_tuning_path_len)
     sorted_ori_dest = [success_pairs[i] for i in sorted_indices]
@@ -168,7 +189,16 @@ def plot_updated_task_path_length_comparison(before_tuning_paths, after_4o_tunin
     fig.show()
 
 def correlation_between_embedding_and_distance(graph, embeddings, sample_num):
-    # sample from pair from the graph, and calculate the distance between the pair, as well as the cosine similarity between the pair
+    '''
+    Sample from pair from the graph, and calculate the distance between the pair, plot to show the correlation between the distance and the Cosine distance.
+    Parameters:
+    - graph: nx.Graph, the graph
+    - embeddings: dict, the embeddings
+    - sample_num: int, the sample number
+
+    Returns:
+    - None
+    '''
     distances = []
     cosine_distances = []
     for _ in range(sample_num):
@@ -181,16 +211,7 @@ def correlation_between_embedding_and_distance(graph, embeddings, sample_num):
         distances.append(distance)
         cosine_distances.append(cosine_distance)
     
-    # plot to show the correlation between the distance and the similarity 
-    # use seaborn to plot more beautiful plot
-    '''
-    plt.scatter(distances, cosine_distances)
-    plt.xlabel("Distance")
-    plt.ylabel("Cosine Distance")
-    plt.title("Correlation between Distance and Embedding Similarity")
-    plt.show()
-    '''
-    
+    # plot to show the correlation between the distance and the Cosine distance
     df = pd.DataFrame({'Distance': distances, 'Cosine Distance': cosine_distances})
     sns.jointplot(data=df, x='Distance', y='Cosine Distance', kind='reg')
     plt.show()
