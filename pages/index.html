@@ -521,21 +521,27 @@ patterns of humans
                  </div>
                  <p>
                   Until now, we have shown that both the out-degrees and semantic distance to the target are significant
-                  factors to make a good navigation decision. 
+                  factors to make a good navigation decision. But what are their relationships? What if there doesn’t exist a
+                  neighbor that is semantically ”close” to the target?
                   </p>
                   <p>
-                  While travellers stand at intersections and cannot find a direction semantically similar to the desti-
-                  nation, it might be a good opportunity to go to a location that connects to more locations to have a
-                  better diversity of options.
+                    Here, we measured the choices based on the out-degrees conditioned on the neighbors to have low
+                    similarity to the target. Then we ranked the out-degrees of all neighbors for all nodes, and counted the
+                    accumulated frequencies versus the ranking. Although the selections for the top 5 nodes are close for
+                    the three groups, shortest paths start to lead the game later.
+                    
                   </p>
                   <p>
-                  Inspired by this, we plot the graph of the accumulated frequency of rank of the chosen neighbour's
-                  degree, conditioned on low similarity with the destination.
-                 </p>
-                 <p>
-                  From the results, we find both the shortest path and humans tend to choose nodes with a
-                  larger degree than GPT. This may be a point of improvement to be included in the rulebook
-                  (prompt) for the traveller as a hint.
+                    Almost 70% of nodes on shortest paths
+                    will select top 10 neighbors in the out-degrees when there is no semantically ”good” choices, while
+                    humans and AI have only 50%. 
+                    
+                  </p> 
+                  <p>
+                    AI and humans perform roughly the same for the top 13 neighbors,
+                    but humans rarely choose neighbors ranked beyond 20. We attribute this phenomenon to the fact
+                    that nodes with less out-degrees are generally less common concepts, and due to the vocabulary and
+                    knowledge differences, humans are less familiar with those choices and therefore not selecting them.
                  </p>
                 </div><!-- End post content -->
 
