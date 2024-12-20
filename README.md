@@ -52,7 +52,12 @@ This file contains
 | `textgrad.ipynb`          | Prompt optimization using textgrad. |
 | `README.md`                 | This README file.                                                           |
 
-Because generating the paths using GPT spends money, so we didn't put and rerun it in comparison.ipynb. To generate the paths under initial task, you can use generate.py, and for the prompt optimization process, you can see textgrad.ipynb. Or you can just simply download the generated paths from https://drive.google.com/file/d/19cHamrMGMWwMOOKIl_zdv7Opp29B_gbG/view?usp=drive_link, then you can run all the analysis in comparison.ipynb based on these files.
+Because generating the paths using GPT costs money, we didn't include and rerun it in comparison.ipynb. To generate the paths under the initial task, you can use generate.py, and for the prompt optimization process, you can see textgrad.ipynb. Alternatively, you can simply download the generated paths from this link https://drive.google.com/file/d/19cHamrMGMWwMOOKIl_zdv7Opp29B_gbG/view?usp=drive_link or ./data/ folder, then you can run all the analysis in comparison.ipynb based on these files
+
+**Install the dependency**
+```bash
+pip install -r requirements.txt
+```
 
 **Tool**
 
@@ -61,19 +66,13 @@ Python
 OpenAI:GPT-4o and GPT-4o mini
 
 [textgrad](https://arxiv.org/abs/2406.07496)
-
-**Timeline**
-
-| Date                 | Content                             |
-| :------------------- | ----------------------------------- |
-| Now - Nov.15th       | Data preprocessing and pre-analysis |
-| Nov.16 - Nov.24th    | LLM dataset generation              |
-| Nov.25th -  Dec.8th  | Processing and analysis             |
-| Dec.9th - Dec.15th   | Evaluation, comparison and report   |
-| Dec.16th - Dec.20th  | Final Check and Supplement          |
+       
 
 ### Conclusion
 
-This project compares the abilities of humans and GPT to find paths in Wikipeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. 
+This project compares the abilities of humans and GPT to find paths in Wikispeedia games, aiming to understand the differences in strategy, efficiency, and semantic understanding. We also tried prompt optimization based on TextGrad, which could potentially be generalized to solve search problems using LLMs.
+
+### Contribution
+- Yexiang Cheng: Preliminary data analysis, GPT paths generation, Paths comparation, Prompt optimization using textgrad and analysis, Result explaination.
 
 
