@@ -5,6 +5,8 @@ import pandas as pd
 import random
 import plotly.graph_objects as go
 from scipy.stats import ttest_rel
+from scipy.stats import gaussian_kde
+
 
 def calculate_shortest_path_length(path, shortest_path_matrix):
     articles = path.split(';')
@@ -430,3 +432,64 @@ def paths_comparation(paths_1, paths_2, shortest_path, ori_dest):
     # t test
     t_stat, p_value = ttest_rel(difference_with_shortest_1, difference_with_shortest_2)
     print(f'T test result: t_stat={t_stat}, p_value={p_value}')
+
+    
+# Function to clean and calculate KDE for smooth curves
+def calculate_kde(data, points=100):
+    # Clean data: remove NaN and infinite values
+    clean_data = np.array(data)
+    clean_data = clean_data[~np.isnan(clean_data)]  # Remove NaNs
+    clean_data = clean_data[np.isfinite(clean_data)]  # Remove infinities
+    
+    if len(clean_data) == 0:
+        raise ValueError("No valid data points available after cleaning.")
+    
+    kde = gaussian_kde(clean_data)
+    x_range = np.linspace(min(clean_data), max(clean_data), points)
+    y_range = kde(x_range)
+    return x_range, y_range
+
+def compute_degree_and_score_means(human_path_len, ai_path_len, AI_paths, AI_path_degrees, ai_closeness_scores, human_paths, human_path_degrees, human_closeness_scores, shortest_path_degrees, optimal_closeness_scores):
+    ai_good_degrees = []
+    ai_bad_degrees = []
+    human_good_degrees = []
+    human_bad_degrees = []
+    optimal_degrees = []
+
+    ai_good_scores = []
+    ai_bad_scores = []
+    human_good_scores = []
+    human_bad_scores = []
+    optimal_scores = []
+
+    avg_human_path_len = [np.sum(path_lens)/len(path_lens) for path_lens in human_path_len]
+    avg_ai_path_len = [np.sum(path_lens)/len(path_lens) for path_lens in ai_path_len]
+
+    for i, pair in zip(range(len(AI_paths)), AI_paths.keys()):
+        for j in range(len(AI_paths[pair])):
+            if ai_path_len[i][j] <= avg_ai_path_len[i]:
+                ai_good_degrees.append(AI_path_degrees[pair][j][1])
+                ai_good_scores.append(ai_closeness_scores[pair][j][0])
+            if ai_path_len[i][j] > avg_ai_path_len[i]:
+                ai_bad_degrees.append(AI_path_degrees[pair][j][1])
+                ai_bad_scores.append(ai_closeness_scores[pair][j][0])
+        for k in range(len(human_paths[pair])):
+            if human_path_len[i][k] <= avg_human_path_len[i]:
+                human_good_degrees.append(human_path_degrees[pair][k][1])
+                human_good_scores.append(human_closeness_scores[pair][k][0])
+            if human_path_len[i][k] > avg_ai_path_len[i]:
+                human_bad_degrees.append(human_path_degrees[pair][k][1])
+                human_bad_scores.append(human_closeness_scores[pair][k][0])
+        optimal_degrees.append(shortest_path_degrees[pair][0][1])
+        optimal_scores.append(optimal_closeness_scores[pair][0][0])
+
+    human_bad_scores = list(np.array(human_bad_scores)[~np.isnan(human_bad_scores)])
+
+    # Data for degrees and scores
+    degree_means = [np.mean(ai_good_degrees), np.mean(ai_bad_degrees), 
+                    np.mean(human_good_degrees), np.mean(human_bad_degrees), 
+                    np.mean(optimal_degrees)]
+    score_means = [np.mean(ai_good_scores), np.mean(ai_bad_scores), 
+                np.mean(human_good_scores), np.mean(human_bad_scores), 
+                np.mean(optimal_scores)]
+    return degree_means, score_means
