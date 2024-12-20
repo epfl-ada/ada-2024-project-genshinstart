@@ -1,6 +1,4 @@
-# Readme
-
-## Project Who's the Better Navigator? A Race Through Wikipedia City: Humans vs GPT
+# Who's the Better Navigator? A Race Through Wikipedia City: Humans vs GPT
 
 ### Data Story: https://epfl-ada.github.io/ada-2024-project-genshinstart/
 ### Introduction
