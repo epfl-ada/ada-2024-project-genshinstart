@@ -367,18 +367,12 @@ patterns of humans
                       \( \cos(\text{embedding}(\text{nextnode}), \text{embedding}(\text{destination})) 
                       - \cos(\text{embedding}(\text{currentnode}), \text{embedding}(\text{destination})) \)
                   </p>
+                  <p>
                     where cos is cosine similarity and embedding is the sentence embedding of the article name
                     corresponding to the node calculated using Sentence Transformer.        
                   </p>
                   <p>
-                    We computed the closeness score for all pairs of nodes for human paths, AI paths, and shortest paths. What's interesting is that both human and machine are actually not so different from each other. 
-                  </p>
-                  <p>
-                    Observing the graphic, we find the GPT and humans have a similar peak around 0 - 0.1 (closeness score). 
-                  </p><p>
-                    This differs heavily from the ideal distribution where another high peak of density is observed around a closeness score of 0.75.
-                  </p><p>
-                    This seems to suggest that humans and GPT share the same strategy: semantically approach the destination gradually, whereas the optimal path can find the "key step" to quickly reach the destination.
+                    We computed the closeness score for all pairs of nodes for human paths, AI paths, and shortest paths.
                   </p>
                   <!-- <img src="./assets/img/figures/closeness_score_distribution.png" class="col-lg-6 img-fluid"> -->
                    <div style="height: 500px;">
@@ -391,19 +385,20 @@ patterns of humans
                    </div>
          
                   <p>
-                    What is interesting is that both human and machine are actually not so different from each
-                    other.
-                    <p></p>
-                    Observing the graphic, we find the GPT companion and humans have a similar peak around
+                    What's interesting is that both humans and GPT are actually not so different from each other.
+                  </p>
+                  <p>
+                    Observing the graphic, we find the GPT and humans have a similar peak around
                     0 - 0.1 (closeness score).
-                    <p></p>
-                    This differs heavily from the ideal distribution where another high peak of density is observed
-                    around a closeness score of 0.75.
-                    <p></p>
-                    This means that both humans and AI take moderately efficient paths navigating the streets
-                    of Wiki City, and that there might exist some shortcuts or other routes that neither humans
-                    nor AI would choose naturally - a fascinating insight into navigation behaviour!
-                 
+                  </p>
+                  <p>
+                    This differs heavily from the ideal distribution where another high peak of density is
+                    observed around a closeness score of 0.75.
+                  </p>
+                  <p>
+                    This seems to suggest that humans and GPT share the same strategy:
+                    semantically approach the destination gradually, whereas the optimal path can find the "key step" to
+                    quickly reach the destination.
                   </p>
 
                   <h3>First Step Choices in Relation to Step Lengths</h3>
@@ -596,7 +591,7 @@ patterns of humans
             </div>
           </div><!-- End Card Item -->
 
-          <section id="blog-details" class="blog-details section" style="padding-top: 0;">
+          <section class="blog-details section" style="padding-top: 0;">
             <div class="container" data-aos="fade-up">
 
               <article class="article">
