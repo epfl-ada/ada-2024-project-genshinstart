@@ -100,7 +100,7 @@
             <div class="content">
               <h2>Welcome to Wiki City!</h2>
               <p>
-                Welcome to Wiki City, a metropolis of knowledge where navigating through ideas can feel like exploring a maze. Humans often rely on intuition and personal experience to find their way, but could an AI companion, like a Large Language Model (LLM), chart a faster, more efficient path?              </p>
+                Greetings, Traveller. Welcome to Wiki City, a metropolis of knowledge where navigating through ideas can feel like exploring a maze. Humans often rely on intuition and personal experience to find their way, but could an AI companion, like a Large Language Model (LLM), chart a faster, more efficient path?              </p>
               <p>
                 To explore this, we turn to a game called Wikispeedia. Players start at one Wikipedia article and attempt to reach a target article, moving only through hyperlinks. By comparing how humans and LLMs navigate under these constraints, we aim to discover who performs better and learn how to enhance AI companions.
 
@@ -389,30 +389,19 @@ patterns of humans
                     transform: scale(0.8) translateX(21.5%);
                     overflow: hidden;"></iframe>
                    </div>
-         
-                  <p>
-                    What is interesting is that both human and machine are actually not so different from each
-                    other.
-                    <p></p>
-                    Observing the graphic, we find the GPT companion and humans have a similar peak around
-                    0 - 0.1 (closeness score).
-                    <p></p>
-                    This differs heavily from the ideal distribution where another high peak of density is observed
-                    around a closeness score of 0.75.
-                    <p></p>
+                    <p>
                     This means that both humans and AI take moderately efficient paths navigating the streets
                     of Wiki City, and that there might exist some shortcuts or other routes that neither humans
                     nor AI would choose naturally - a fascinating insight into navigation behaviour!
-                 
-                  </p>
+                    </p>
 
                   <h3>First Step Choices in Relation to Step Lengths</h3>
-                  <p>Having explored the overall navigation strategy, let us now focus on the details of the initial
-                    steps of the journey, examining how the initial choices set the tone for the entire path forward.
-                  </p>
+                  <p>Therefore, as the saying goes "A good beginning is half done", and in the maze-like streets of Wiki City, an initial choice maybe can profoundly influence the entire path ahead.<p>
+                    So, is there really no big difference between human and AI solutions? What advantages do shortest paths have that distinguish them from human and AI paths? Our more detailed analysis will provide more clues to answer these questions.</p>
                   <p>
-                    We divided the paths into "good" and "bad" groups according to their lengths, and compared
-                    the closeness score and out-degrees for the first steps for different groups: 
+                    Since the quality of the first step decision is intuitively one of the most significant factor of the path length, we can first take a look at how different groups perform in this initial step. We divide the paths into "good" and "bad" groups according to their lengths and set the median length as the cutting threshold.
+                  </p>
+                  
                     <br>
                     <b>                    ai good, human good,
                       optimal, ai bad, human bad. </b>
@@ -432,11 +421,12 @@ patterns of humans
                     The results show that compared to longer paths, shorter paths
                     tend to select:
                     <ol>
-                      <li><b>Articles with higher out-degrees</b></li>
-                      <li><b>Articles with higher closeness scores</b>
+                      <li><b>Articles with much stronger semantic relations to the target</b></li>
+                      <li><b>Articles with more out-degrees.</b>
                     </ol>
-                    Also, AI tends to focus more on semantic meanings while humans select their
-                    first steps to have more out-degrees.
+                    Such differences appear to be much stronger in the paths of AI than humans, indicating that the quality of AI paths relies much more on these two features, while human paths might depend on more factors.
+                  </p><p>
+                    Another key finding here is that optimal paths have the highest out-degrees compared to humans and AI! This provides us with a promising hint to instruct our AI to look for better paths.
                   </p>
                   <div style="display: flex;">
                     <div style="height: 500px; width: 600px;">
@@ -458,7 +448,7 @@ patterns of humans
                   </div>
 
                   <h3>Getting Deeper into Semantic Proximity</h3>
-                  <p>We go further into the semantic relationships for the choices made by humans and AI, since without so
+                  <p>After examining how initial choices affect the entire journey through the alleys of Wiki City, we go further into the semantic relationships for the choices made by humans and AI, since without so
                     much knowledge of the graph, semantic meanings is definitely one of the few clues that one could rely
                     on to make the navigation. We enlarge our observations, measuring every steps’ every neighboring
                     nodes’ semantic distance to the target. For each node, we rank their neighbors according to their
@@ -466,41 +456,12 @@ patterns of humans
                     select the semantically optimal choice among their neighbors. Again, the shortest paths have the
                     strongest tendency for this result. Also, AI beat humans in this semantic measurement: a greater
                     proportion of selections are made on the rank 1 neighbor than the others, although the proportion for
-                    selecting the top 5 neighbors both slightly exceeded 60</p>
+                    selecting the top 5 neighbors both slightly exceeded 60%</p>
                     
                     <div style="text-align: center;">
                     <img src="./assets/img/figures/node_selection_by_semantic_proximity.png" width="700px">
                     </div>
                     
-                  <h3>The accumulated frequency of rank of chosen neighbor</h3>
-                  <p>
-                    Beyond semantics, let us focus on another dimension: how the structure of Wiki City intersections affects navigation decisions.
-                  </p>
-                  <p>
-                    We used the accumulated frequency of rank of chosen neighbour, which can show some
-                    strategies of the paths chosen.
-                  </p>
-                  <div style="height: 500px;">
-                    <iframe loading="lazy" data-src="./accumulated_distribution_of_rank_of_neighbors.html" style="   
-                    width: 1433px;
-                    height: 1170px;
-                    transform-origin: top left;
-                    transform: scale(0.8) translateX(21.5%);
-                    overflow: hidden;"></iframe>
-                   </div>
-                   <p>
-                    As a result, the figure shows that the GPT tends to choose nodes semantically closer to the
-                    destination than humans. However, the shortest paths show a lower preference for neighbours with a rank of 3, which indicates that semantically closer may not mean graphically
-                    better performance.
-                  </p>
-                  <p>
-                    In other words, going into a street in Wiki City that is semantically more similar to the
-                    destination can help, perhaps there are other, counter-intuitive routes the traveller can take
-                    that actually take it faster to the destination. As the semantic closeness is not the whole
-                    story, we need to go a step further.
-                  </p>
-
-
                   <h3>The accumulated frequency of rank of chosen neighbor's degree, conditioning on low simi
                     larity with destination</h3>
                   <p>
@@ -525,11 +486,7 @@ patterns of humans
                   neighbor that is semantically ”close” to the target?
                   </p>
                   <p>
-                    Here, we measured the choices based on the out-degrees conditioned on all the neighbors have low similarity 
-                    with the destination. For nodes where all the neighbors have similarity less 0.30 with the destination, 
-                    we ranked the out-degrees of all neighbors, and counted the accumulated frequencies versus the ranking. 
-                    Although the selections for the top 5 nodes are close for
-                    the three groups, shortest paths start to lead the game later.    
+                   Here, we considered the selections of nodes based on the out-degrees under the condition that all neighbours have low similarity with the destination.
                   </p>
                   <p>
                     Almost 70% of nodes on shortest paths
@@ -903,13 +860,7 @@ patterns of humans
                 on.              
               </p>
               <p>
-                Analysis of previous results suggests that a more 
-                effective strategy, particularly for the first step, 
-                is to choose intersections that connect to a larger 
-                number of destinations, even if they aren't semantically 
-                similar to the target. Further research is needed to 
-                develop an optimal GPS for Wiki City - 
-                the city of knowledge."
+                Even if the AI is equipped with the ability to "self-optimize", and gain some non-semantic inspiration, it can hardly reach the optimal path. Overall, the structural characteristics make it difficult to conclude how to make a perfect GPS for the city of knowledge, Wiki City.
               </p>  
             </div>
           </div>
