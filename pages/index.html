@@ -297,7 +297,7 @@ patterns of humans
               <i class="bi bi-headset color-green flex-shrink-0" style="color: #15be56;"></i>
               <div>
                 <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Attempted Frequency by Humans</p>
+                <p>Least Attempted Frequency by Humans</p>
               </div>
             </div>
           </div><!-- End Stats Item -->
@@ -331,6 +331,18 @@ patterns of humans
 
 
                 <div class="content">
+                  <h3>Path Length Comparison</h3>
+              
+                  <p>
+                    The most basic metric of the game is the length of the paths (including
+                    backtracking) to measure how far the traveller (human or AI) will walk until they arrive at their
+                    destination.
+                  <p>  
+                    The average path length for ai, human, and shortest paths are 6.22, 6.65, and 3.70 respectively. Our mighty AI companion was indeed faster than humans on several topics but on others it took a much longer path instead.
+                  </p>
+                  <p>
+                    What are the reasons that lead to these differences? Are there potential approaches to improve our AI to find shorter paths based on our analysis.
+                  </p>
                   <div style="height: 980px;">
                     <iframe loading="lazy" data-src="path_length_comparison.html" style="   
                     width: 1433px;
@@ -340,18 +352,7 @@ patterns of humans
                     overflow: hidden;"></iframe>
                     <!-- <img src="assets/img/figures/boxplot.png" class="img-fluid" alt=""> -->
                   </div>
-                  <p>
-                    Comparison of lengths The most basic metric of the game is the length of the paths (including
-                    backtracking) to measure how far the traveller (human or AI) will walk until they arrive at their
-                    destination.
-                  <p>  
-                    Our mighty AI companion was indeed faster than humans on several topics but on others it took
-                    a much longer path instead.
-                  </p>
-                  <p>
-                    As this metric alone cannot reveal why these differences occur, we need to investigate deeper.
-                  </p>
-                
+                  
                   <h3>Closeness score distribution</h3>
                   <p>
                     To gain more details, we next considered a measure that evaluates how each step advances
@@ -359,8 +360,7 @@ patterns of humans
                     hood where the traveller is now is compared to the final destination in Wiki City.
                   </p>
                   <p>
-                    We define it as the closeness score: for each transition (current node, next node, destination)
-                    the score is given by the following formula:
+                    For each transition (current node, next node, destination) the score is given by the following formula:
                   </p>
 
                     <p>
@@ -369,6 +369,16 @@ patterns of humans
                   </p>
                     where cos is cosine similarity and embedding is the sentence embedding of the article name
                     corresponding to the node calculated using Sentence Transformer.        
+                  </p>
+                  <p>
+                    We computed the closeness score for all pairs of nodes for human paths, AI paths, and shortest paths. What's interesting is that both human and machine are actually not so different from each other. 
+                  </p>
+                  <p>
+                    Observing the graphic, we find the GPT and humans have a similar peak around 0 - 0.1 (closeness score). 
+                  </p><p>
+                    This differs heavily from the ideal distribution where another high peak of density is observed around a closeness score of 0.75.
+                  </p><p>
+                    This means that both humans and AI take moderately efficient paths navigating the streets of Wiki City, and that there might exist some shortcuts or other routes that neither humans nor AI would choose naturally - a fascinating insight into navigation behaviour!
                   </p>
                   <!-- <img src="./assets/img/figures/closeness_score_distribution.png" class="col-lg-6 img-fluid"> -->
                    <div style="height: 500px;">
@@ -396,6 +406,72 @@ patterns of humans
                  
                   </p>
 
+                  <h3>First Step Choices in Relation to Step Lengths</h3>
+                  <p>Having explored the overall navigation strategy, let us now focus on the details of the initial
+                    steps of the journey, examining how the initial choices set the tone for the entire path forward.
+                  </p>
+                  <p>
+                    We divided the paths into "good" and "bad" groups according to their lengths, and compared
+                    the closeness score and out-degrees for the first steps for different groups: 
+                    <br>
+                    <b>                    ai good, human good,
+                      optimal, ai bad, human bad. </b>
+                      <ul>  
+                        <li> <b>AI Good Paths:</b> Shorter or equal to the average AI path length; stores node degrees and closeness scores.</li>
+                        <li> <b>AI Bad Paths:</b> Longer than the average AI path length; stores node degrees and closeness scores.</li>
+                        <li> <b>Human Good Paths:</b> Shorter or equal to the average human path length; stores node degrees and closeness scores.</li>
+                        <li> <b>Human Bad Paths:</b> Longer than the average human path length
+                        ; stores node degrees and closeness scores.</li>
+                        <li> <b>Optimal Paths:</b> Shortest paths used as a benchmark; stores node degrees and closeness scores.</li>
+                      </ul>
+
+                      </ul>
+                    <br>
+                    <br>
+
+                    The results show that compared to longer paths, shorter paths
+                    tend to select:
+                    <ol>
+                      <li><b>Articles with higher out-degrees</b></li>
+                      <li><b>Articles with higher closeness scores</b>
+                    </ol>
+                    Also, AI tends to focus more on semantic meanings while humans select their
+                    first steps to have more out-degrees.
+                  </p>
+                  <div style="display: flex;">
+                    <div style="height: 500px; width: 600px;">
+                      <iframe loading="lazy" data-src="./mean_out_degrees_comparison.html" style="   
+                      width: 1433px;
+                      height: 1170px;
+                      transform-origin: top left;
+                      transform: scale(0.8);
+                      overflow: hidden;"></iframe>
+                    </div>
+                    <div style="height: 450px;">
+                      <iframe loading="lazy" data-src="./mean_closeness_scores_comparison.html" style="   
+                      width: 1433px;
+                      height: 1170px;
+                      transform-origin: top left;
+                      transform: scale(0.8);
+                      overflow: hidden;"></iframe>
+                    </div>
+                  </div>
+
+                  <h3>Getting Deeper into Semantic Proximity</h3>
+                  <p>We go further into the semantic relationships for the choices made by humans and AI, since without so
+                    much knowledge of the graph, semantic meanings is definitely one of the few clues that one could rely
+                    on to make the navigation. We enlarge our observations, measuring every steps’ every neighboring
+                    nodes’ semantic distance to the target. For each node, we rank their neighbors according to their
+                    semantic distance to the destination, and it turned out that nearly half of the choices are made to
+                    select the semantically optimal choice among their neighbors. Again, the shortest paths have the
+                    strongest tendency for this result. Also, AI beat humans in this semantic measurement: a greater
+                    proportion of selections are made on the rank 1 neighbor than the others, although the proportion for
+                    selecting the top 5 neighbors both slightly exceeded 60</p>
+                    
+                    <div style="text-align: center;">
+                    <img src="./assets/img/figures/node_selection_by_semantic_proximity.png" width="700px">
+                    </div>
+                    
                   <h3>The accumulated frequency of rank of chosen neighbor</h3>
                   <p>
                     Beyond semantics, let us focus on another dimension: how the structure of Wiki City intersections affects navigation decisions.
@@ -444,67 +520,29 @@ patterns of humans
                   overflow: hidden;"></iframe>
                  </div>
                  <p>
-                  From the results, we find both the shortest path and humans tend to choose nodes with a
-                  larger degree than GPT. This may be a point of improvement to be included in the rulebook
-                  (prompt) for the traveller as a hint.
-                 </p>
-                  <h3>First Step Choices in Relation to Step Lengths</h3>
-                  <p>Having explored the overall navigation strategy, let us now focus on the details of the initial
-                    steps of the journey, examining how the initial choices set the tone for the entire path forward.
+                  Until now, we have shown that both the out-degrees and semantic distance to the target are significant
+                  factors to make a good navigation decision. But what are their relationships? What if there doesn’t exist a
+                  neighbor that is semantically ”close” to the target?
                   </p>
                   <p>
-                    We divided the paths into "good" and "bad" groups according to their lengths, and compared
-                    the closeness score and out-degrees for the first steps for different groups: 
-                    <br>
-                    <b>                    ai good, human good,
-                      optimal, ai bad, human bad. </b>
-                      <ul>  
-                        <li> <b>AI Good Paths:</b> Shorter or equal to the average AI path length; stores node degrees and closeness scores.</li>
-                        <li> <b>AI Bad Paths:</b> Longer than the average AI path length; stores node degrees and closeness scores.</li>
-                        <li> <b>Human Good Paths:</b> Shorter or equal to the average human path length; stores node degrees and closeness scores.</li>
-                        <li> <b>Human Bad Paths:</b> Longer than the average human path length
-                        ; stores node degrees and closeness scores.</li>
-                        <li> <b>Optimal Paths:</b> Shortest paths used as a benchmark; stores node degrees and closeness scores.</li>
-                      </ul>
-
-                      </ul>
-                    <br>
-                    <br>
-
-                    The results show that compared to longer paths, shorter paths
-                    tend to select:
-                    <ol>
-                      <li><b>Articles with higher out-degrees</b></li>
-                      <li><b>Articles with higher closeness scores</b>
-                    </ol>
-                    Also, AI tends to focus more on semantic meanings while humans select their
-                    first steps to have more out-degrees.
-                    <ul>
-                      <li>Out Degrees comparison:</li>
-                      <li>Closeness Scores comparison</li>
-                    </ul>
-                    Also, AI tends to focus more on semantic meanings while humans select their
-                    first steps to have more out-degrees.
+                    Here, we measured the choices based on the out-degrees conditioned on the neighbors to have low
+                    similarity to the target. Then we ranked the out-degrees of all neighbors for all nodes, and counted the
+                    accumulated frequencies versus the ranking. Although the selections for the top 5 nodes are close for
+                    the three groups, shortest paths start to lead the game later.
+                    
                   </p>
-                  <div style="display: flex;">
-                    <div style="height: 500px; width: 600px;">
-                      <iframe loading="lazy" data-src="./mean_out_degrees_comparison.html" style="   
-                      width: 1433px;
-                      height: 1170px;
-                      transform-origin: top left;
-                      transform: scale(0.8);
-                      overflow: hidden;"></iframe>
-                    </div>
-                    <div style="height: 450px;">
-                      <iframe loading="lazy" data-src="./mean_closeness_scores_comparison.html" style="   
-                      width: 1433px;
-                      height: 1170px;
-                      transform-origin: top left;
-                      transform: scale(0.8);
-                      overflow: hidden;"></iframe>
-                    </div>
-                  </div>
-            
+                  <p>
+                    Almost 70% of nodes on shortest paths
+                    will select top 10 neighbors in the out-degrees when there is no semantically ”good” choices, while
+                    humans and AI have only 50%. 
+                    
+                  </p> 
+                  <p>
+                    AI and humans perform roughly the same for the top 13 neighbors,
+                    but humans rarely choose neighbors ranked beyond 20. We attribute this phenomenon to the fact
+                    that nodes with less out-degrees are generally less common concepts, and due to the vocabulary and
+                    knowledge differences, humans are less familiar with those choices and therefore not selecting them.
+                 </p>
                 </div><!-- End post content -->
 
 
@@ -567,6 +605,36 @@ patterns of humans
                 </div>
 
                 <div class="content">
+
+                  <div class="table-container">
+                    <div class="caption">Table 1: Comparison of Paths by Baseline and Improved Prompt</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Baseline</th>
+                                <th>Manually Improved Prompt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="metric-column">Number of Shorter Paths</td>
+                                <td>34</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td class="metric-column">Average Path Length</td>
+                                <td>6.2036</td>
+                                <td>5.7992</td>
+                            </tr>
+                            <tr>
+                                <td class="metric-column">Median Path Length</td>
+                                <td>5.2</td>
+                                <td>5.2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                
                   <p>We observed that on longer travels, this improved our GPT finding the destination, but not so much on shorter paths.</p>
 
@@ -584,8 +652,8 @@ patterns of humans
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
       
-                    <div class="faq-item">
-                      <h3>How can we improve the prompt to provide more precise feedback?</h3>
+                    <div class="faq-item faq-active">
+                      <h3>How to improve the prompt to provide more precise feedback?</h3>
                       <div class="faq-content">
                         <p>To address this, we redefined the task for GPT. The input now consists of a pair: [current article] and [target article],
                            along with the available links [neighbors]. GPT is tasked with outputting its [choice]—the next article it prefers to select—and [reason]—an explanation for its choice. This redefinition 
@@ -593,68 +661,64 @@ patterns of humans
                            a correct solution. For training, we sample a pair from the graph and extract the neighbors as training data.
                            <br>
                         With this setup, the average path length is directly reduced and more stable compared to before, this is probably because the [reason] part ask model for explanation. Then we tuned the prompt, for clarity, let's refer to GPT-4o Mini as the "student" and GPT-4o as the "teacher."</p>
+                        <div class="table-container">
+                          <div class="caption">Table 2: Comparison of Paths by original task and modified task</div>
+                          <table>
+                              <thead>
+                                  <tr>
+                                      <th>Metric</th>
+                                      <th>Original task</th>
+                                      <th>Path 2: Modified task</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td class="metric-column">Failure Rate</td>
+                                      <td>0.0</td>
+                                      <td>0.0692</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="metric-column">Number of Shorter Paths</td>
+                                      <td>41</td>
+                                      <td>67</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="metric-column">Average Path Length</td>
+                                      <td>6.1028</td>
+                                      <td>5.6824</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="metric-column">Median Path Length</td>
+                                      <td>5.2</td>
+                                      <td>5.0</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
                       </div>
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
       
-                    <div class="faq-item">
+                    <div class="faq-item faq-active">
                       <h3>Okay, it's time to equip our AI challenger with the new prompt! </h3>
+                      <p>
+                        For clarity, let’s refer to GPT-4o Mini as the ”student” and GPT-4o
+                        as the ”teacher.”
+                        </p><p>
+                        The initial prompt is:
+                      </p><p>
+                        You are an expert in navigating articles. Your goal is to find the path as short as possible from the
+                        start article to the target article by selecting the provided links. Each time you will be given (current
+                        article, destination) pair and the the next article that you could choose.
+                      </p><p>
+                        Your output should include: ”Choice: ” followed by the title of the article you want to navigate
+                        to. ”Reason: ” followed by the reason why you chose that article.
+                      </p>
                       <div class="faq-content">
-                        <div>
-                          <p><strong>The initial prompt is:</strong></p>
-                  
-                          <p>You are an expert in navigating articles. Your goal is to find the path as short as possible from the start article to the target article by selecting the provided links. Each time you will be given (current article, destination) pair and the next article that you could choose.</p>
-                          
-                          <p>Your output should include:</p>
-                          <ul>
-                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
-                            <li>"Reason: " followed by the reason why you chose that article.</li>
-                          </ul>
-                          
-                          <p><strong>For the task, the student receives:</strong></p>
-                          
-                          <p>You are currently at the article "Chlorine". The target article is "Brisbane". The links you can choose from are: Argon, Atom, Bacteria, Berlin, Bromine, Calcium, Chemical_element, Color, Dead_Sea, Drinking_water, Electron, Fluorine, Food, Gas, Human, Hydrochloric_acid, Hydrogen, List_of_elements_by_name, Magnetism, Medicine, Mercury_(element), Neon, Neutron, Nuclear_weapon, Ocean, Oxygen, Ozone, Periodic_table, Petroleum, Phase_(matter), Proton, Salt, Seawater, Sodium_hydroxide, Soil, Sulfur, Textile, Titanium, Water, Water_purification, World_War_I.</p>
-                          
-                          <p><strong>Then the student provides the choice:</strong></p>
-                          
-                          <p><strong>Choice:</strong> "Water"<br>
-                          <strong>Reason:</strong> The article "Water" is a crucial element in understanding various geographical and environmental contexts, including those related to Brisbane, which is a city in Australia known for its river and proximity to water bodies. Additionally, water is essential for life and is a common theme in discussions about cities, their development, and their ecosystems. By navigating to "Water," I can potentially find connections to articles related to Brisbane's geography, climate, and urban planning, which may lead to the target article more efficiently. Other options, such as "Chemical_element" or "Periodic_table," while relevant to the topic of chlorine, do not have a direct connection to the geographical context of Brisbane.</p>
-                          
-                          <p><strong>Then, teacher provides feedback (loss):</strong></p>
-                          
-                          <p><strong>Feedback:</strong> The choice of "Water" is not optimal as it is not among the first steps in the shortest paths to "Brisbane." While the reasoning about water's relevance to geographical and environmental contexts is valid, it does not directly lead to the target article efficiently. Instead, consider choosing "Ocean" or "Drinking_water," which are more directly related to geographical and environmental contexts and are part of the optimal choices. These articles are more likely to have connections to Brisbane due to their relevance to water bodies and urban water systems, which are significant aspects of Brisbane's geography.</p>
-                          
-                          <p>Even when the student provides the correct answer, the teacher could provide some suggestions on the reasoning.</p>
-                          
-                          <p>After several rounds, the final prompt got:</p>
-                          
-                          <p>You are an expert in navigating articles with the goal of finding the shortest path from the start article to the target article by selecting the provided links. Your expertise involves understanding thematic, historical, geographical, cultural, economic, and social connections. Each time you will be given a (current article, destination) pair and the list of next articles you could choose from.</p>
-                          
-                          <p>Your output should include:</p>
-                          <ul>
-                            <li>"Choice: " followed by the title of the article you want to navigate to.</li>
-                            <li>"Reason: " followed by a specific and well-reasoned justification for your choice, considering direct connections and potential pathways to the target.</li>
-                          </ul>
-                          
-                          <p>Consider multiple potential paths and evaluate their merits before making a choice. Use the information provided and avoid relying on assumptions or external knowledge not present in the task. Reflect on your choices and learn from any mistakes to improve your navigation strategy. Emphasize the importance of minimizing steps and prioritize links that are part of the shortest path. Incorporate feedback from past decisions to refine your strategy and ensure efficient navigation.</p>
-                          
-                          <p>To enhance your decision-making:</p>
-                          <ul>
-                            <li>Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.</li>
-                            <li>Evaluate potential links hierarchically, starting with the most specific and direct connections.</li>
-                            <li>Balance thematic relevance with chronological proximity when considering potential links.</li>
-                            <li>Hypothesize multiple potential paths and evaluate their likelihood of success using a structured decision-making framework.</li>
-                            <li>Continuously refine your strategy based on feedback and past experiences.</li>
-                            <li>Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.</li>
-                            <li>Test hypotheses about potential paths and adjust your strategy based on the outcomes.</li>
-                          </ul>
-                          
-                          <p>By following these guidelines, you will improve your ability to select the most efficient path to the target article.</p>
-                          
-                          <p>Cool, the updated prompt includes practical suggestions and some are just similar to ours improvement such as 'Avoid common pitfalls such as over-reliance on broad thematic links or assumptions not supported by the provided data.', 'Prioritize links with direct connections to the target article, especially those that are chronologically or geographically adjacent.'.</p>
-                          
-                         
-                        </div>
+                        <iframe loading="lazy" data-src="chat.html" style="   
+                        width: 100%;
+                        height: 500px;
+                        overflow: hidden;"></iframe>
                       </div>
                       <i class="faq-toggle bi bi-chevron-right"></i>
                     </div><!-- End Faq item-->
